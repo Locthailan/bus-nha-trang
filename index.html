@@ -4,34 +4,153 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#087f5b">
-<title>Bus Nha Trang</title>
+<title>Bus Nha Trang V2</title>
+
 <style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f3f6f5;color:#17211e}
-header{background:#087f5b;color:white;padding:35px 18px 22px}
-h1{margin:0}
-main{padding:16px;max-width:700px;margin:auto}
-.card{background:white;padding:16px;border-radius:18px;margin-bottom:14px}
-label{display:block;margin:12px 0 5px;color:#65736e}
-input,select{width:100%;box-sizing:border-box;padding:13px;border:1px solid #ccc;border-radius:12px;font-size:16px}
-button{width:100%;padding:14px;margin-top:14px;border:0;border-radius:12px;background:#087f5b;color:white;font-weight:bold;font-size:16px}
-.step{padding:12px 0;border-bottom:1px solid #eee}
-small{color:#65736e}
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:#f3f6f5;
+ color:#17211e;
+}
+
+header{
+ background:linear-gradient(135deg,#087f5b,#34916f);
+ color:white;
+ padding:35px 18px 24px;
+}
+
+h1{margin:0;font-size:30px}
+header p{margin:8px 0 0;font-size:17px}
+
+main{
+ max-width:760px;
+ margin:auto;
+ padding:16px;
+}
+
+.card{
+ background:white;
+ border-radius:20px;
+ padding:17px;
+ margin-bottom:15px;
+ box-shadow:0 3px 12px #00000008;
+}
+
+label{
+ display:block;
+ margin:13px 0 6px;
+ color:#62706b;
+ font-size:15px;
+}
+
+input,select{
+ width:100%;
+ padding:14px;
+ border:1px solid #ccd3d0;
+ border-radius:14px;
+ font-size:16px;
+ background:white;
+}
+
+button{
+ width:100%;
+ padding:15px;
+ margin-top:15px;
+ border:0;
+ border-radius:14px;
+ background:#087f5b;
+ color:white;
+ font-size:16px;
+ font-weight:700;
+}
+
+.route{
+ border:1px solid #dce5e1;
+ border-radius:15px;
+ padding:14px;
+ margin:11px 0;
+}
+
+.route-title{
+ font-size:19px;
+ font-weight:800;
+ color:#087f5b;
+}
+
+.meta{
+ color:#65736e;
+ font-size:13px;
+ margin-top:6px;
+}
+
+.roads{
+ font-size:14px;
+ line-height:1.55;
+ margin-top:8px;
+}
+
+.stop{
+ background:#f2faf7;
+ border-radius:14px;
+ padding:13px;
+ margin:12px 0;
+}
+
+.stop-title{
+ color:#087f5b;
+ font-weight:800;
+}
+
+.small{
+ color:#65736e;
+ font-size:13px;
+ margin-top:5px;
+}
+
+.hidden{display:none}
+
+.warning{
+ background:#fff6da;
+ color:#735b09;
+ border-radius:14px;
+ padding:13px;
+ font-size:13px;
+ line-height:1.4;
+}
+
+.chip{
+ display:inline-block;
+ background:#087f5b;
+ color:white;
+ padding:5px 9px;
+ border-radius:8px;
+ font-weight:800;
+ margin:3px;
+}
 </style>
 </head>
 
 <body>
+
 <header>
 <h1>🚌 Bus Nha Trang</h1>
-<p>Tìm xe buýt nội thành</p>
+<p>Tìm xe buýt nội thành 01–06</p>
 </header>
 
 <main>
+
 <div class="card">
+
 <label>📍 Đi từ</label>
-<input id="from" value="Quinter Central, 84 Trần Phú, Nha Trang">
+<input id="from"
+value="Quinter Central, 84 Trần Phú, Nha Trang">
 
 <label>🏁 Đi đến</label>
-<input id="to" value="16A Lãn Ông, Nha Trang">
+<input id="to"
+value="16A Lãn Ông, Nha Trang">
 
 <label>Ưu tiên</label>
 <select id="pref">
@@ -40,45 +159,239 @@ small{color:#65736e}
 <option>⚡ Nhanh nhất</option>
 </select>
 
-<button onclick="findRoute()">TÌM ĐƯỜNG</button>
+<button onclick="findRoute()">
+🔎 TÌM ĐƯỜNG
+</button>
+
 </div>
 
-<div class="card" id="result">
-<h3>🚌 Tuyến thử nghiệm: 04</h3>
-
-<div class="step">
-🚶 <b>Đi bộ đến trạm gần Trần Phú</b><br>
-<small>Dữ liệu trạm đang được hoàn thiện</small>
+<div id="result" class="card hidden">
 </div>
 
-<div class="step">
-🚌 <b>Lên tuyến 04</b>
+<div class="card">
+
+<h2>🚌 Các tuyến nội thành</h2>
+
+<div id="routes"></div>
+
 </div>
 
-<div class="step">
-🚏 <b>Xuống gần khu vực Lãn Ông</b>
+<div class="warning">
+⚠️ <b>Lưu ý V2:</b>
+Dữ liệu hiện tại xác định được đường mà các tuyến đi qua,
+nhưng chưa có tọa độ chính xác của toàn bộ điểm dừng.
+Vì vậy app chưa tự tính khoảng cách đi bộ tới từng trạm.
 </div>
 
-<button onclick="maps()">🗺️ Mở điểm đến trên Google Maps</button>
-</div>
 </main>
 
 <script>
+
+const ROUTES=[
+
+{
+ id:"01",
+ time:"05:25–19:15",
+ duration:"~50 phút",
+ stops:"~31",
+ roads:
+ "Vĩnh Trường → Võ Thị Sáu → Tô Hiệu → Trường Sơn → Phước Long → Lê Hồng Phong → Mã Vòng → 23/10 → QL1A → Tỉnh Lộ 2 → Trạm Thành"
+},
+
+{
+ id:"02",
+ time:"05:20–19:10",
+ duration:"~50 phút",
+ stops:"~27",
+ roads:
+ "Bình Tân → Tô Hiệu → Trần Phú → Trần Quang Khải → Hùng Vương → Lê Thánh Tôn → Đinh Tiên Hoàng → Lý Tự Trọng → Quang Trung → Trần Quý Cáp → Mã Vòng → 23/10 → QL1A → Tỉnh Lộ 2 → Trạm Thành"
+},
+
+{
+ id:"03",
+ time:"05:50–17:55",
+ duration:"~30 phút",
+ stops:"~18",
+ roads:
+ "Chợ Đầm → Pasteur → Trần Hưng Đạo → Nguyễn Chánh → Ngô Gia Tự → Cửu Long → Lê Hồng Phong → Nguyễn Tất Thành → Sông Lô"
+},
+
+{
+ id:"04",
+ time:"05:10–19:10",
+ duration:"~45 phút",
+ stops:"~22",
+ roads:
+ "Hòn Xện → Nguyễn Dữ → Phạm Văn Đồng → Tháp Bà → 2/4 → Quang Trung → Lê Thánh Tôn → Nguyễn Thiện Thuật → Trần Quang Khải → Trần Phú → Cầu Đá → Cảng Vinpearl"
+},
+
+{
+ id:"05",
+ time:"05:20–18:35",
+ duration:"~35 phút",
+ stops:"~20",
+ roads:
+ "Bắc cầu Trần Phú → Nguyễn Bỉnh Khiêm → Ngô Quyền → Phan Chu Trinh → Hoàng Hoa Thám → Nguyễn Chánh → Lê Thánh Tôn → Tô Hiến Thành → Nguyễn Thị Minh Khai → Trần Phú → Dã Tượng → Võ Thị Sáu → Phước Long → Lê Hồng Phong → Nguyễn Tất Thành → Hòn Rớ"
+},
+
+{
+ id:"06",
+ time:"05:20–19:00",
+ duration:"~45 phút",
+ stops:"~21",
+ roads:
+ "Vĩnh Điềm Trung → 23/10 → Mã Vòng → Yersin → Quang Trung → 2/4 → Nguyễn Xiển → QL1A → Chợ Lương Sơn"
+}
+
+];
+
+function renderRoutes(){
+
+ document.getElementById("routes").innerHTML =
+ ROUTES.map(r => `
+
+ <div class="route">
+
+ <div class="route-title">
+ 🚌 Tuyến ${r.id}
+ </div>
+
+ <div class="meta">
+ 🕐 ${r.time}
+   •  
+ ⏱ ${r.duration}
+   •  
+ 🚏 ${r.stops} điểm
+ </div>
+
+ <div class="roads">
+ ${r.roads}
+ </div>
+
+ </div>
+
+ `).join("");
+
+}
+
 function findRoute(){
- localStorage.setItem("from",document.getElementById("from").value);
- localStorage.setItem("to",document.getElementById("to").value);
- document.getElementById("result").scrollIntoView({behavior:"smooth"});
-}
 
-function maps(){
- let q=document.getElementById("to").value;
- window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q));
-}
+ const from =
+ document.getElementById("from").value.trim();
 
-let f=localStorage.getItem("from");
-let t=localStorage.getItem("to");
-if(f) document.getElementById("from").value=f;
-if(t) document.getElementById("to").value=t;
-</script>
-</body>
-</html>
+ const to =
+ document.getElementById("to").value.trim();
+
+ const pref =
+ document.getElementById("pref").value;
+
+ localStorage.setItem("bnt_from",from);
+ localStorage.setItem("bnt_to",to);
+ localStorage.setItem("bnt_pref",pref);
+
+ const result =
+ document.getElementById("result");
+
+ result.classList.remove("hidden");
+
+ /*
+  Đây là logic tạm thời dành riêng
+  cho hành trình thử 84 Trần Phú.
+ */
+
+ const isTranPhu =
+ from.toLowerCase().includes("trần phú");
+
+ if(isTranPhu){
+
+ result.innerHTML=`
+
+ <h2>🔎 Tuyến phù hợp để kiểm tra</h2>
+
+ <p>
+ Từ khu vực <b>${from}</b>,
+ các tuyến có đoạn chạy qua
+ <b>Trần Phú</b> gồm:
+ </p>
+
+ <div>
+ <span class="chip">02</span>
+ <span class="chip">04</span>
+ <span class="chip">05</span>
+ </div>
+
+ <div class="stop">
+
+ <div class="stop-title">
+ 🚏 TRẠM LÊN
+ </div>
+
+ <p>
+ <b>Đường:</b> Trần Phú
+ </p>
+
+ <p>
+ <b>Giao đường gần nhất:</b>
+ đang xác minh
+ </p>
+
+ <p>
+ <b>Hướng xe:</b>
+ cần xác định theo tuyến được chọn
+ </p>
+
+ <div class="small">
+ Tọa độ trạm sẽ được bổ sung ở V3.
+ </div>
+
+ </div>
+
+ <div class="stop">
+
+ <div class="stop-title">
+ 🏁 TRẠM XUỐNG
+ </div>
+
+ <p>
+ <b>Điểm đến:</b>
+ ${to}
+ </p>
+
+ <p>
+ <b>Đường đặt trạm:</b>
+ đang xác minh
+ </p>
+
+ <p>
+ <b>Giao đường gần nhất:</b>
+ đang xác minh
+ </p>
+
+ <p>
+ <b>Đi bộ đến đích:</b>
+ sẽ tự tính khi có tọa độ trạm
+ </p>
+
+ </div>
+
+ <button onclick="openMap('${escapeQuote(from)}')">
+ 🗺️ Google Maps điểm đi
+ </button>
+
+ <button onclick="openMap('${escapeQuote(to)}')">
+ 🏁 Google Maps điểm đến
+ </button>
+
+ `;
+
+ }
+ else{
+
+ result.innerHTML=`
+
+ <h2>🔎 Kết quả</h2>
+
+ <p>
+ <b>Đi từ:</b><br>
+ ${from}
+ </p

@@ -394,4 +394,63 @@ function findRoute(){
  <p>
  <b>Đi từ:</b><br>
  ${from}
- </p
+ </p>
+
+ <p>
+ <b>Đi đến:</b><br>
+ ${to}
+ </p>
+
+ <p>
+ V2 chưa đủ dữ liệu tọa độ trạm để tự chọn tuyến
+ cho địa điểm này.
+ </p>
+
+ `;
+
+ }
+
+ result.scrollIntoView({
+ behavior:"smooth"
+ });
+
+}
+
+function escapeQuote(text){
+ return text.replace(/'/g,"\\'");
+}
+
+function openMap(query){
+
+ const url =
+ "https://www.google.com/maps/search/?api=1&query="
+ + encodeURIComponent(query);
+
+ window.open(url,"_blank");
+
+}
+
+renderRoutes();
+
+const savedFrom =
+localStorage.getItem("bnt_from");
+
+const savedTo =
+localStorage.getItem("bnt_to");
+
+const savedPref =
+localStorage.getItem("bnt_pref");
+
+if(savedFrom)
+ document.getElementById("from").value=savedFrom;
+
+if(savedTo)
+ document.getElementById("to").value=savedTo;
+
+if(savedPref)
+ document.getElementById("pref").value=savedPref;
+
+</script>
+
+</body>
+</html>

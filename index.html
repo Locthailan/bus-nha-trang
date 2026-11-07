@@ -2,455 +2,640 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+ name="viewport"
+ content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
 <meta name="theme-color" content="#087f5b">
-<title>Bus Nha Trang V2</title>
+
+<title>Bus Nha Trang V4</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+ box-sizing:border-box;
+}
 
 body{
  margin:0;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+ font-family:
+ -apple-system,
+ BlinkMacSystemFont,
+ "Segoe UI",
+ sans-serif;
+
  background:#f3f6f5;
  color:#17211e;
 }
 
 header{
- background:linear-gradient(135deg,#087f5b,#34916f);
+ background:
+ linear-gradient(
+  135deg,
+  #087f5b,
+  #19a879
+ );
+
  color:white;
- padding:35px 18px 24px;
+
+ padding:
+ calc(22px + env(safe-area-inset-top))
+ 17px
+ 20px;
 }
 
-h1{margin:0;font-size:30px}
-header p{margin:8px 0 0;font-size:17px}
+header h1{
+ margin:0;
+ font-size:28px;
+}
 
-main{
- max-width:760px;
+header p{
+ margin:6px 0 0;
+}
+
+.wrap{
+ max-width:820px;
  margin:auto;
- padding:16px;
+ padding:14px;
 }
 
 .card{
  background:white;
- border-radius:20px;
- padding:17px;
- margin-bottom:15px;
- box-shadow:0 3px 12px #00000008;
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:13px;
+ box-shadow:0 4px 16px #0000000c;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
 }
 
 label{
  display:block;
- margin:13px 0 6px;
- color:#62706b;
- font-size:15px;
+ color:#64716d;
+ font-size:13px;
+ margin:9px 0 5px;
 }
 
-input,select{
+input,
+select{
  width:100%;
- padding:14px;
- border:1px solid #ccd3d0;
- border-radius:14px;
+ padding:13px;
+ border:1px solid #cfd8d4;
+ border-radius:12px;
  font-size:16px;
  background:white;
 }
 
 button{
- width:100%;
- padding:15px;
- margin-top:15px;
  border:0;
- border-radius:14px;
+ border-radius:12px;
+ padding:13px;
+ font-size:15px;
+ font-weight:750;
  background:#087f5b;
  color:white;
- font-size:16px;
- font-weight:700;
 }
 
-.route{
- border:1px solid #dce5e1;
- border-radius:15px;
- padding:14px;
- margin:11px 0;
+button:active{
+ opacity:0.85;
+ transform:scale(0.99);
 }
 
-.route-title{
- font-size:19px;
- font-weight:800;
- color:#087f5b;
+.full{
+ width:100%;
+ margin-top:12px;
 }
 
-.meta{
+.secondary{
+ background:#e6f4ef;
+ color:#086b4e;
+}
+
+.blue{
+ background:#1769aa;
+}
+
+.muted{
  color:#65736e;
  font-size:13px;
- margin-top:6px;
+ line-height:1.5;
 }
 
-.roads{
- font-size:14px;
- line-height:1.55;
- margin-top:8px;
+.hidden{
+ display:none !important;
 }
 
-.stop{
- background:#f2faf7;
- border-radius:14px;
- padding:13px;
- margin:12px 0;
+#map{
+ height:390px;
+ border-radius:16px;
+ background:#dfe9e5;
+ overflow:hidden;
 }
 
-.stop-title{
- color:#087f5b;
- font-weight:800;
+.map-placeholder{
+ height:100%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:25px;
+ color:#52615c;
 }
 
-.small{
- color:#65736e;
- font-size:13px;
- margin-top:5px;
+.tabs{
+ display:flex;
+ gap:8px;
+ overflow:auto;
+ padding-bottom:4px;
 }
 
-.hidden{display:none}
-
-.warning{
- background:#fff6da;
- color:#735b09;
- border-radius:14px;
- padding:13px;
- font-size:13px;
- line-height:1.4;
+.tab{
+ min-width:112px;
+ background:#f1f6f4;
+ border:1px solid #d7e2de;
+ color:#21312b;
 }
 
-.chip{
+.tab.active{
+ background:#087f5b;
+ color:white;
+}
+
+.badge{
  display:inline-block;
+ background:#dff4e9;
+ color:#086746;
+ border-radius:9px;
+ padding:5px 8px;
+ font-size:12px;
+ font-weight:800;
+}
+
+.timeline{
+ border-left:4px solid #8fd0b8;
+ margin:15px 0 8px 11px;
+ padding-left:19px;
+}
+
+.step{
+ position:relative;
+ margin:0 0 19px;
+}
+
+.step:before{
+ content:"";
+ position:absolute;
+ width:12px;
+ height:12px;
+ border-radius:50%;
+ background:#087f5b;
+ left:-27px;
+ top:4px;
+ border:3px solid white;
+ box-shadow:0 0 0 2px #087f5b;
+}
+
+.step b{
+ display:block;
+}
+
+.stopbox{
+ background:#f2faf7;
+ border-radius:13px;
+ padding:12px;
+ margin-top:10px;
+}
+
+.times{
+ display:flex;
+ gap:8px;
+ overflow:auto;
+ padding:8px 0;
+}
+
+.time{
+ min-width:91px;
+ border:1px solid #b8dfd0;
+ background:#edf8f4;
+ border-radius:11px;
+ padding:9px;
+ text-align:center;
+}
+
+.time.next{
  background:#087f5b;
  color:white;
- padding:5px 9px;
- border-radius:8px;
- font-weight:800;
- margin:3px;
 }
+
+.time strong{
+ display:block;
+ font-size:17px;
+}
+
+.notice{
+ background:#fff6db;
+ color:#735c0b;
+ border-radius:13px;
+ padding:12px;
+ font-size:12px;
+ line-height:1.5;
+}
+
+.status{
+ margin-top:9px;
+ padding:10px;
+ border-radius:11px;
+ background:#edf8f4;
+ color:#086746;
+ font-size:13px;
+}
+
+.poi-list{
+ border:1px solid #d5dfdb;
+ border-radius:12px;
+ margin-top:5px;
+ overflow:hidden;
+}
+
+.poi{
+ padding:11px;
+ border-bottom:1px solid #e5ebe8;
+ background:white;
+ cursor:pointer;
+}
+
+.poi:last-child{
+ border-bottom:0;
+}
+
+.poi b{
+ display:block;
+}
+
+.poi small{
+ color:#68736f;
+}
+
+.route-info{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ margin-top:10px;
+}
+
+.metric{
+ text-align:center;
+ background:#f4f7f6;
+ border-radius:11px;
+ padding:9px;
+}
+
+.metric strong{
+ display:block;
+ color:#087f5b;
+}
+
+@media(max-width:560px){
+
+ .grid{
+  grid-template-columns:1fr;
+ }
+
+ .route-info{
+  grid-template-columns:1fr 1fr;
+ }
+
+ #map{
+  height:330px;
+ }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <h1>🚌 Bus Nha Trang</h1>
-<p>Tìm xe buýt nội thành 01–06</p>
+
+<p>
+V4 · Tìm địa điểm, bản đồ hành trình và lịch xe dự kiến
+</p>
+
 </header>
 
-<main>
+<div class="wrap">
 
-<div class="card">
+<section class="card">
 
 <label>📍 Đi từ</label>
-<input id="from"
-value="Quinter Central, 84 Trần Phú, Nha Trang">
+
+<input
+ id="from"
+ value="Quinter Central, 84 Trần Phú"
+ placeholder="Ví dụ: quinter hotel"
+>
 
 <label>🏁 Đi đến</label>
-<input id="to"
-value="16A Lãn Ông, Nha Trang">
+
+<input
+ id="to"
+ value="Bò Nướng Lạc Cảnh"
+ placeholder="Ví dụ: bo nuong lac canh, khach san, cafe"
+>
+
+<div class="grid">
+
+<div>
 
 <label>Ưu tiên</label>
+
 <select id="pref">
-<option>🚶 Đi bộ ít nhất</option>
-<option>🚌 Ít đổi tuyến nhất</option>
-<option>⚡ Nhanh nhất</option>
+
+<option value="walk">
+🚶 Đi bộ ít nhất
+</option>
+
+<option value="transfer">
+🚌 Ít đổi tuyến
+</option>
+
+<option value="fast">
+⚡ Nhanh nhất
+</option>
+
 </select>
 
-<button onclick="findRoute()">
+</div>
+
+<div>
+
+<label>Khu vực</label>
+
+<input
+ value="Nha Trang"
+ disabled
+>
+
+</div>
+
+</div>
+
+<button
+ class="full"
+ onclick="findRoute()"
+>
 🔎 TÌM ĐƯỜNG
 </button>
 
+<div
+ id="apiStatus"
+ class="status"
+>
+Chế độ mẫu đang hoạt động. Thêm Google Maps API key để hiện bản đồ.
 </div>
 
-<div id="result" class="card hidden">
+</section>
+
+<section
+ id="suggestions"
+ class="card hidden"
+>
+
+<b>Gợi ý địa điểm</b>
+
+<div
+ id="poiList"
+ class="poi-list"
+></div>
+
+</section>
+
+<section
+ id="result"
+ class="hidden"
+>
+
+<div class="card">
+
+<div
+ class="tabs"
+ id="routeTabs"
+></div>
+
 </div>
 
 <div class="card">
 
-<h2>🚌 Các tuyến nội thành</h2>
+<div id="map">
 
-<div id="routes"></div>
+<div class="map-placeholder">
+
+🗺️ Bản đồ hành trình sẽ hiện ở đây.
+<br>
+Bản demo vẫn có nút mở hành trình trên Google Maps.
 
 </div>
 
-<div class="warning">
-⚠️ <b>Lưu ý V2:</b>
-Dữ liệu hiện tại xác định được đường mà các tuyến đi qua,
-nhưng chưa có tọa độ chính xác của toàn bộ điểm dừng.
-Vì vậy app chưa tự tính khoảng cách đi bộ tới từng trạm.
 </div>
 
-</main>
+</div>
+
+<div
+ class="card"
+ id="journey"
+></div>
+
+</section>
+
+<section class="notice">
+
+<b>Lưu ý:</b>
+
+Giờ tại trạm là ước tính từ khung giờ hoạt động,
+tần suất giả định và độ lệch theo trạm.
+
+Đây chưa phải GPS thời gian thực hoặc bảng giờ chính thức
+theo từng trạm.
+
+</section>
+
+</div>
 
 <script>
 
-const ROUTES=[
+/*
+==========================================
+GOOGLE MAPS API KEY
+==========================================
 
-{
- id:"01",
- time:"05:25–19:15",
- duration:"~50 phút",
- stops:"~31",
- roads:
- "Vĩnh Trường → Võ Thị Sáu → Tô Hiệu → Trường Sơn → Phước Long → Lê Hồng Phong → Mã Vòng → 23/10 → QL1A → Tỉnh Lộ 2 → Trạm Thành"
-},
+Sau khi tạo API key, thay:
 
-{
- id:"02",
- time:"05:20–19:10",
- duration:"~50 phút",
- stops:"~27",
- roads:
- "Bình Tân → Tô Hiệu → Trần Phú → Trần Quang Khải → Hùng Vương → Lê Thánh Tôn → Đinh Tiên Hoàng → Lý Tự Trọng → Quang Trung → Trần Quý Cáp → Mã Vòng → 23/10 → QL1A → Tỉnh Lộ 2 → Trạm Thành"
-},
+DAN_API_KEY_VAO_DAY
 
-{
- id:"03",
- time:"05:50–17:55",
- duration:"~30 phút",
- stops:"~18",
- roads:
- "Chợ Đầm → Pasteur → Trần Hưng Đạo → Nguyễn Chánh → Ngô Gia Tự → Cửu Long → Lê Hồng Phong → Nguyễn Tất Thành → Sông Lô"
-},
+bằng key của bạn.
 
-{
- id:"04",
- time:"05:10–19:10",
- duration:"~45 phút",
- stops:"~22",
- roads:
- "Hòn Xện → Nguyễn Dữ → Phạm Văn Đồng → Tháp Bà → 2/4 → Quang Trung → Lê Thánh Tôn → Nguyễn Thiện Thuật → Trần Quang Khải → Trần Phú → Cầu Đá → Cảng Vinpearl"
-},
+*/
 
-{
- id:"05",
- time:"05:20–18:35",
- duration:"~35 phút",
- stops:"~20",
- roads:
- "Bắc cầu Trần Phú → Nguyễn Bỉnh Khiêm → Ngô Quyền → Phan Chu Trinh → Hoàng Hoa Thám → Nguyễn Chánh → Lê Thánh Tôn → Tô Hiến Thành → Nguyễn Thị Minh Khai → Trần Phú → Dã Tượng → Võ Thị Sáu → Phước Long → Lê Hồng Phong → Nguyễn Tất Thành → Hòn Rớ"
-},
+const GOOGLE_MAPS_API_KEY =
+"DAN_API_KEY_VAO_DAY";
 
-{
- id:"06",
- time:"05:20–19:00",
- duration:"~45 phút",
- stops:"~21",
- roads:
- "Vĩnh Điềm Trung → 23/10 → Mã Vòng → Yersin → Quang Trung → 2/4 → Nguyễn Xiển → QL1A → Chợ Lương Sơn"
-}
+
+/*
+==========================================
+TRUNG TÂM KHU VỰC NHA TRANG
+==========================================
+*/
+
+const NHA_TRANG = {
+ lat:12.2388,
+ lng:109.1967
+};
+
+
+/*
+==========================================
+DỮ LIỆU ĐỊA ĐIỂM MẪU
+==========================================
+*/
+
+const PLACES = [
+
+ {
+  name:"Quinter Central Nha Trang",
+  address:"84 Trần Phú, Nha Trang",
+  lat:12.22955,
+  lng:109.19905,
+  type:"Khách sạn"
+ },
+
+ {
+  name:"Bò Nướng Lạc Cảnh",
+  address:"44 Nguyễn Bỉnh Khiêm, Nha Trang",
+  lat:12.25425,
+  lng:109.19235,
+  type:"Nhà hàng"
+ },
+
+ {
+  name:"Chợ Đầm",
+  address:"Bến Chợ, Nha Trang",
+  lat:12.2527,
+  lng:109.1916,
+  type:"Chợ"
+ },
+
+ {
+  name:"Ga Nha Trang",
+  address:"17 Thái Nguyên, Nha Trang",
+  lat:12.2481,
+  lng:109.1842,
+  type:"Nhà ga"
+ },
+
+ {
+  name:"Tháp Bà Ponagar",
+  address:"61 Hai Tháng Tư, Nha Trang",
+  lat:12.2654,
+  lng:109.1951,
+  type:"Điểm tham quan"
+ }
 
 ];
 
-function renderRoutes(){
 
- document.getElementById("routes").innerHTML =
- ROUTES.map(r => `
+/*
+==========================================
+DỮ LIỆU TRẠM MẪU
+Tọa độ cần tiếp tục kiểm tra thực địa.
+==========================================
+*/
 
- <div class="route">
+const STOPS = {
 
- <div class="route-title">
- 🚌 Tuyến ${r.id}
- </div>
+ tranphu96:{
 
- <div class="meta">
- 🕐 ${r.time}
-   •  
- ⏱ ${r.duration}
-   •  
- 🚏 ${r.stops} điểm
- </div>
+  name:"Trạm Trần Phú",
 
- <div class="roads">
- ${r.roads}
- </div>
+  address:
+  "96 Trần Phú, Nha Trang",
 
- </div>
+  road:
+  "Trần Phú",
 
- `).join("");
+  near:
+  "gần khu vực Trần Quang Khải",
 
-}
+  lat:12.2258,
+  lng:109.1992,
 
-function findRoute(){
+  routes:[
+   "02",
+   "04",
+   "05"
+  ]
 
- const from =
- document.getElementById("from").value.trim();
+ },
 
- const to =
- document.getElementById("to").value.trim();
+ lytrong:{
 
- const pref =
- document.getElementById("pref").value;
+  name:
+  "Trạm Lý Tự Trọng",
 
- localStorage.setItem("bnt_from",from);
- localStorage.setItem("bnt_to",to);
- localStorage.setItem("bnt_pref",pref);
+  address:
+  "Lý Tự Trọng & Quang Trung, Nha Trang",
 
- const result =
- document.getElementById("result");
+  road:
+  "Lý Tự Trọng",
 
- result.classList.remove("hidden");
+  near:
+  "gần giao Quang Trung",
 
- /*
-  Đây là logic tạm thời dành riêng
-  cho hành trình thử 84 Trần Phú.
- */
+  lat:12.2484,
+  lng:109.1907,
 
- const isTranPhu =
- from.toLowerCase().includes("trần phú");
+  routes:[
+   "02"
+  ]
 
- if(isTranPhu){
+ },
 
- result.innerHTML=`
+ lysthanhton:{
 
- <h2>🔎 Tuyến phù hợp để kiểm tra</h2>
+  name:
+  "Trạm Lý Thánh Tôn",
 
- <p>
- Từ khu vực <b>${from}</b>,
- các tuyến có đoạn chạy qua
- <b>Trần Phú</b> gồm:
- </p>
+  address:
+  "Lý Thánh Tôn, Nha Trang",
 
- <div>
- <span class="chip">02</span>
- <span class="chip">04</span>
- <span class="chip">05</span>
- </div>
+  road:
+  "Lý Thánh Tôn",
 
- <div class="stop">
+  near:
+  "gần Nguyễn Thiện Thuật",
 
- <div class="stop-title">
- 🚏 TRẠM LÊN
- </div>
+  lat:12.2457,
+  lng:109.1919,
 
- <p>
- <b>Đường:</b> Trần Phú
- </p>
+  routes:[
+   "04"
+  ]
 
- <p>
- <b>Giao đường gần nhất:</b>
- đang xác minh
- </p>
+ },
 
- <p>
- <b>Hướng xe:</b>
- cần xác định theo tuyến được chọn
- </p>
+ nguyenchang:{
 
- <div class="small">
- Tọa độ trạm sẽ được bổ sung ở V3.
- </div>
+  name:
+  "Trạm Nguyễn Chánh",
 
- </div>
-
- <div class="stop">
-
- <div class="stop-title">
- 🏁 TRẠM XUỐNG
- </div>
-
- <p>
- <b>Điểm đến:</b>
- ${to}
- </p>
-
- <p>
- <b>Đường đặt trạm:</b>
- đang xác minh
- </p>
-
- <p>
- <b>Giao đường gần nhất:</b>
- đang xác minh
- </p>
-
- <p>
- <b>Đi bộ đến đích:</b>
- sẽ tự tính khi có tọa độ trạm
- </p>
-
- </div>
-
- <button onclick="openMap('${escapeQuote(from)}')">
- 🗺️ Google Maps điểm đi
- </button>
-
- <button onclick="openMap('${escapeQuote(to)}')">
- 🏁 Google Maps điểm đến
- </button>
-
- `;
-
- }
- else{
-
- result.innerHTML=`
-
- <h2>🔎 Kết quả</h2>
-
- <p>
- <b>Đi từ:</b><br>
- ${from}
- </p>
-
- <p>
- <b>Đi đến:</b><br>
- ${to}
- </p>
-
- <p>
- V2 chưa đủ dữ liệu tọa độ trạm để tự chọn tuyến
- cho địa điểm này.
- </p>
-
- `;
-
- }
-
- result.scrollIntoView({
- behavior:"smooth"
- });
-
-}
-
-function escapeQuote(text){
- return text.replace(/'/g,"\\'");
-}
-
-function openMap(query){
-
- const url =
- "https://www.google.com/maps/search/?api=1&query="
- + encodeURIComponent(query);
-
- window.open(url,"_blank");
-
-}
-
-renderRoutes();
-
-const savedFrom =
-localStorage.getItem("bnt_from");
-
-const savedTo =
-localStorage.getItem("bnt_to");
-
-const savedPref =
-localStorage.getItem("bnt_pref");
-
-if(savedFrom)
- document.getElementById("from").value=savedFrom;
-
-if(savedTo)
- document.getElementById("to").value=savedTo;
-
-if(savedPref)
- document.getElementById("pref").value=savedPref;
-
-</script>
-
-</body>
-</html>
+  address:
+  "Nguyễn Chánh, Nha Trang

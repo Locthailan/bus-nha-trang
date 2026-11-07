@@ -1,11 +1,18 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+ name="viewport"
+ content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
 <meta name="theme-color" content="#087f5b">
 
-<title>Bus Nha Trang V4.4</title>
+<title>Bus Nha Trang V5.1</title>
 
 <style>
 
@@ -13,388 +20,150 @@
  box-sizing:border-box;
 }
 
-html{
- scroll-behavior:smooth;
-}
-
 body{
  margin:0;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+ font-family:
+ -apple-system,
+ BlinkMacSystemFont,
+ "Segoe UI",
+ sans-serif;
+
  background:#f3f6f5;
  color:#17211e;
 }
 
 header{
- background:linear-gradient(135deg,#087f5b,#55ad83);
+ background:
+ linear-gradient(
+  135deg,
+  #087f5b,
+  #55ad83
+ );
+
  color:white;
 
  padding:
- calc(27px + env(safe-area-inset-top))
- 18px
- 24px;
+ 32px 18px 23px;
 }
 
 h1{
  margin:0;
- font-size:30px;
 }
 
-header p{
- margin:7px 0 0;
-}
-
-.wrap{
- max-width:820px;
+.w{
+ max-width:880px;
  margin:auto;
- padding:16px;
+ padding:15px;
 }
 
-.card{
+.c{
  background:white;
- border-radius:20px;
- padding:17px;
- margin-bottom:15px;
- box-shadow:0 3px 14px #0000000a;
+
+ border-radius:18px;
+
+ padding:15px;
+
+ margin-bottom:13px;
+
+ box-shadow:
+ 0 3px 14px #0001;
 }
 
 label{
  display:block;
+
  color:#64716d;
- margin:12px 0 6px;
+
+ margin:10px 0 5px;
 }
 
 input,
 select{
  width:100%;
- padding:14px;
- border:1px solid #cad5d0;
- border-radius:14px;
+
+ padding:13px;
+
+ border:
+ 1px solid #cad5d0;
+
+ border-radius:12px;
+
  font-size:16px;
+
  background:white;
 }
 
-.find-link{
- display:block;
- width:100%;
+button{
+ border:0;
 
- margin-top:13px;
- padding:15px;
+ border-radius:12px;
 
- border-radius:14px;
+ padding:13px;
 
  background:#087f5b;
  color:white;
 
- text-align:center;
- text-decoration:none;
+ font-weight:800;
 
- font-size:16px;
- font-weight:bold;
+ font-size:15px;
 }
 
-.small{
- color:#66736e;
+.full{
+ width:100%;
+ margin-top:13px;
+}
+
+.status{
+ margin-top:10px;
+
+ padding:10px;
+
+ border-radius:10px;
+
+ background:#edf8f4;
+ color:#086746;
+
  font-size:13px;
- line-height:1.5;
 }
 
-.notice{
- background:#fff6db;
- color:#745b08;
+.err{
+ background:#ffe8e8;
+ color:#9a2424;
+}
+
+.hide{
+ display:none;
+}
+
+#map{
+ height:390px;
 
  border-radius:14px;
-
- padding:13px;
-
- font-size:12px;
- line-height:1.5;
-}
-
-
-/* ===== CHỌN TUYẾN ===== */
-
-.route-radio{
- position:absolute;
- opacity:0;
- pointer-events:none;
 }
 
 .tabs{
  display:flex;
- gap:8px;
 
- overflow-x:auto;
+ gap:7px;
 
- padding-bottom:3px;
+ overflow:auto;
 }
 
 .tab{
- display:block;
-
  min-width:118px;
 
- padding:13px;
-
- border-radius:14px;
-
- background:#eef5f2;
+ background:#edf4f1;
  color:#17211e;
 
- text-align:center;
-
- border:1px solid #d4e0db;
-
- cursor:pointer;
+ border:
+ 1px solid #d3dfda;
 }
 
-.tab small{
- font-weight:normal;
-}
-
-
-/* Tuyến đang chọn */
-
-#route04:checked
-~ .chooser
-label[for="route04"],
-
-#route02:checked
-~ .chooser
-label[for="route02"],
-
-#route05:checked
-~ .chooser
-label[for="route05"]{
-
+.tab.on{
  background:#087f5b;
  color:white;
-
 }
-
-
-/* ===== PANEL TUYẾN ===== */
-
-.route-panel{
- display:none;
-}
-
-
-#route04:checked
-~ .panels
-.p04{
-
- display:block;
-
-}
-
-
-#route02:checked
-~ .panels
-.p02{
-
- display:block;
-
-}
-
-
-#route05:checked
-~ .panels
-.p05{
-
- display:block;
-
-}
-
-
-/* ===== SƠ ĐỒ ===== */
-
-.map{
- height:300px;
-
- border-radius:16px;
-
- background:
- linear-gradient(
-  120deg,
-  #e5efeb 0 76%,
-  #aae1f2 76%
- );
-
- position:relative;
- overflow:hidden;
-
- margin-bottom:14px;
-}
-
-.road{
- position:absolute;
-
- background:white;
-
- border-radius:20px;
-}
-
-.r1{
- width:520px;
- height:28px;
-
- left:-30px;
- top:145px;
-
- transform:
- rotate(-18deg);
-}
-
-.r2{
- width:360px;
- height:22px;
-
- left:70px;
- top:95px;
-
- transform:
- rotate(72deg);
-}
-
-.busline{
- position:absolute;
-
- left:58%;
- top:40px;
-
- width:8px;
- height:220px;
-
- border-radius:8px;
-
- transform:
- rotate(9deg);
-}
-
-
-/* Màu từng tuyến */
-
-.green{
- background:#087f5b;
-}
-
-.blue{
- background:#1769aa;
-}
-
-.orange{
- background:#b86612;
-}
-
-
-.dot{
- position:absolute;
-
- width:30px;
- height:30px;
-
- border-radius:50%;
-
- display:flex;
-
- align-items:center;
- justify-content:center;
-
- color:white;
-
- font-weight:bold;
-}
-
-.a{
- left:54%;
- top:25px;
-
- background:#1769aa;
-}
-
-.s1{
- left:56%;
- top:95px;
-
- background:#087f5b;
-}
-
-.s2{
- left:60%;
- top:185px;
-
- background:#087f5b;
-}
-
-.b{
- left:63%;
- top:248px;
-
- background:#d43a36;
-}
-
-
-.maplabel{
- position:absolute;
-
- left:17%;
-
- background:white;
-
- padding:5px 8px;
-
- border-radius:8px;
-
- font-size:11px;
-
- box-shadow:0 2px 7px #0002;
-
- max-width:150px;
-}
-
-.la{
- top:26px;
-}
-
-.ls1{
- top:96px;
-}
-
-.ls2{
- top:187px;
-}
-
-.lb{
- top:249px;
-}
-
-
-/* ===== CHI TIẾT ===== */
-
-.detail-card{
- background:white;
-
- border-radius:20px;
-
- padding:17px;
-
- margin-bottom:15px;
-}
-
-.badge{
- display:inline-block;
-
- background:#dff4e9;
- color:#086746;
-
- border-radius:9px;
-
- padding:5px 9px;
-
- font-size:12px;
- font-weight:bold;
-}
-
 
 .metrics{
  display:grid;
@@ -402,58 +171,46 @@ label[for="route05"]{
  grid-template-columns:
  repeat(4,1fr);
 
- gap:8px;
-
- margin:13px 0;
+ gap:7px;
 }
 
-
-.metric{
+.m{
  text-align:center;
 
- background:#f2f7f5;
+ background:#f1f6f4;
 
- border-radius:12px;
+ border-radius:10px;
 
- padding:10px 6px;
+ padding:9px;
 }
 
-
-.metric strong{
+.m b{
  display:block;
 
  color:#087f5b;
-
- font-size:16px;
 }
 
-
-.timeline{
+.tl{
  border-left:
  4px solid #8dcfb6;
 
- padding-left:18px;
-
  margin:
- 18px 0 8px 10px;
-}
+ 16px 0 5px 10px;
 
+ padding-left:17px;
+}
 
 .step{
- margin-bottom:18px;
+ margin-bottom:16px;
 }
 
+.small{
+ color:#66736e;
 
-/* ===== LỊCH XE ===== */
+ font-size:13px;
 
-.schedule{
- background:#f2faf7;
-
- border-radius:14px;
-
- padding:12px;
+ line-height:1.45;
 }
-
 
 .times{
  display:flex;
@@ -461,34 +218,40 @@ label[for="route05"]{
  gap:7px;
 
  overflow:auto;
-
- margin-top:9px;
 }
 
-
 .time{
- min-width:92px;
+ min-width:88px;
 
- padding:9px;
-
- background:white;
+ text-align:center;
 
  border:
  1px solid #b9dfd1;
 
  border-radius:10px;
 
- text-align:center;
+ padding:8px;
 }
 
-
-.time.next{
+.time:first-child{
  background:#087f5b;
  color:white;
 }
 
+.warn{
+ background:#fff5d8;
+ color:#735a0a;
 
-.actions{
+ border-radius:12px;
+
+ padding:11px;
+
+ font-size:12px;
+
+ line-height:1.5;
+}
+
+.grid{
  display:grid;
 
  grid-template-columns:
@@ -497,30 +260,31 @@ label[for="route05"]{
  gap:8px;
 }
 
+.verified{
+ display:inline-block;
 
-.actions .find-link{
- margin-top:10px;
+ background:#dff4e9;
+ color:#086746;
 
- font-size:14px;
+ padding:4px 8px;
 
- padding:13px;
+ border-radius:8px;
+
+ font-size:12px;
+
+ font-weight:800;
 }
-
 
 @media(max-width:560px){
 
- .metrics{
-
-  grid-template-columns:
-  1fr 1fr;
-
+ #map{
+  height:330px;
  }
 
- .actions{
-
+ .metrics,
+ .grid{
   grid-template-columns:
-  1fr;
-
+  1fr 1fr;
  }
 
 }
@@ -540,28 +304,26 @@ label[for="route05"]{
 </h1>
 
 <p>
-V4.4 · Chọn tuyến để xem hành trình
+V5.1 · Google Maps + dữ liệu tuyến 01–06
 </p>
 
 </header>
 
 
-<main class="wrap">
+<main class="w">
 
 
-<!-- =====================
-     ĐIỂM ĐI / ĐẾN
-===================== -->
+<section class="c">
 
-<section class="card">
 
 <label>
 📍 Đi từ
 </label>
 
 <input
+ id="from"
  value="Quinter Central, 84 Trần Phú"
- readonly
+ placeholder="Khách sạn, cafe, địa chỉ..."
 >
 
 
@@ -570,8 +332,9 @@ V4.4 · Chọn tuyến để xem hành trình
 </label>
 
 <input
+ id="to"
  value="Bò Nướng Lạc Cảnh"
- readonly
+ placeholder="bo nuong lac canh, 16a lan ong..."
 >
 
 
@@ -579,1142 +342,2289 @@ V4.4 · Chọn tuyến để xem hành trình
 Ưu tiên
 </label>
 
-<select>
+<select id="pref">
 
-<option>
+<option value="walk">
 🚶 Đi bộ ít nhất
 </option>
 
-<option>
-🚌 Ít đổi tuyến nhất
-</option>
-
-<option>
+<option value="time">
 ⚡ Nhanh nhất
 </option>
 
 </select>
 
 
-<a
- class="find-link"
- href="#routes"
+<button
+ id="find"
+ class="full"
+ type="button"
 >
 🔎 TÌM ĐƯỜNG
-</a>
+</button>
+
+
+<div
+ id="status"
+ class="status"
+>
+Đang tải Google Maps...
+</div>
+
 
 </section>
 
 
 
-<!-- =====================
-       CHỌN TUYẾN
-===================== -->
-
-<section id="routes">
-
-
-<input
- class="route-radio"
- type="radio"
- name="route"
- id="route04"
- checked
+<section
+ id="out"
+ class="hide"
 >
 
 
-<input
- class="route-radio"
- type="radio"
- name="route"
- id="route02"
->
+<div class="c">
 
-
-<input
- class="route-radio"
- type="radio"
- name="route"
- id="route05"
->
-
-
-
-<div class="card chooser">
-
-<h2>
-🚌 Chọn phương án
-</h2>
-
-
-<div class="tabs">
-
-
-<label
- class="tab"
- for="route04"
->
-
-<b>
-Tuyến 04
-</b>
-
-<br>
-
-18 phút
-
-<br>
-
-<small>
-Đi bộ 450 m
-</small>
-
-</label>
-
-
-
-<label
- class="tab"
- for="route02"
->
-
-<b>
-Tuyến 02
-</b>
-
-<br>
-
-20 phút
-
-<br>
-
-<small>
-Đi bộ 520 m
-</small>
-
-</label>
-
-
-
-<label
- class="tab"
- for="route05"
->
-
-<b>
-Tuyến 05
-</b>
-
-<br>
-
-22 phút
-
-<br>
-
-<small>
-Đi bộ 600 m
-</small>
-
-</label>
-
-
-</div>
+<div
+ id="tabs"
+ class="tabs"
+></div>
 
 </div>
 
 
+<div class="c">
 
-<div class="panels">
-
-
-<!-- =====================
-         TUYẾN 04
-===================== -->
-
-<section class="route-panel p04">
-
-
-<div class="card">
-
-<div class="map">
-
-<div class="road r1"></div>
-
-<div class="road r2"></div>
-
-<div class="busline green"></div>
-
-
-<div class="dot a">
-A
-</div>
-
-<div class="dot s1">
-🚏
-</div>
-
-<div class="dot s2">
-🚏
-</div>
-
-<div class="dot b">
-B
-</div>
-
-
-<div class="maplabel la">
-84 Trần Phú
-</div>
-
-<div class="maplabel ls1">
-Trạm Trần Phú
-</div>
-
-<div class="maplabel ls2">
-Trạm Lý Thánh Tôn
-</div>
-
-<div class="maplabel lb">
-Bò Nướng Lạc Cảnh
-</div>
+<div id="map"></div>
 
 </div>
 
 
-<div class="small">
+<div
+ id="detail"
+ class="c"
+></div>
 
-Sơ đồ tuyến 04,
-chưa phải bản đồ GPS.
-
-</div>
-
-</div>
-
-
-
-<div class="detail-card">
-
-<span class="badge">
-⭐ Phương án ưu tiên
-</span>
-
-
-<h2>
-🚌 Tuyến 04
-</h2>
-
-
-<div class="metrics">
-
-
-<div class="metric">
-
-<strong>
-18 phút
-</strong>
-
-<small>
-Tổng thời gian
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-450 m
-</strong>
-
-<small>
-Tổng đi bộ
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-6 trạm
-</strong>
-
-<small>
-Trên xe
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-~7.000đ
-</strong>
-
-<small>
-Vé tham khảo
-</small>
-
-</div>
-
-
-</div>
-
-
-
-<div class="timeline">
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~120 m
-</b>
-
-<div class="small">
-
-Từ 84 Trần Phú đến
-trạm khu vực 96 Trần Phú,
-gần Trần Quang Khải.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚌 Lên tuyến 04
-</b>
-
-<div class="small">
-
-Đi khoảng 6 trạm,
-khoảng 12 phút.
-
-Khung giờ tham khảo:
-05:10–19:10.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚏 Xuống trạm Lý Thánh Tôn
-</b>
-
-<div class="small">
-
-Trên đường Lý Thánh Tôn,
-gần Nguyễn Thiện Thuật.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~330 m
-</b>
-
-<div class="small">
-
-Từ trạm xuống đến
-Bò Nướng Lạc Cảnh.
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div class="schedule">
-
-<b>
-🕐 Lịch minh họa tuyến 04
-</b>
-
-
-<div class="times">
-
-
-<div class="time next">
-
-<b>
-14:22
-</b>
-
-<br>
-
-<small>
-Gần nhất
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-15:07
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-15:52
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-16:37
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<div class="actions">
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Đến trạm lên
-
-</a>
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=L%C3%BD%20Th%C3%A1nh%20T%C3%B4n%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Trạm xuống → đích
-
-</a>
-
-
-</div>
-
-</div>
 
 </section>
 
 
 
-<!-- =====================
-         TUYẾN 02
-===================== -->
+<section class="warn">
 
-<section class="route-panel p02">
+<b>V5.1 an toàn dữ liệu:</b>
 
+Ứng dụng chỉ sử dụng các điểm lên hoặc xuống có tên địa điểm
+hay địa chỉ công khai.
 
-<div class="card">
+Google Maps định vị các địa chỉ khi ứng dụng khởi động.
 
-<div class="map">
+Chuỗi đường của tuyến 01–06 dùng để tham khảo.
 
-<div class="road r1"></div>
+Ứng dụng không tự coi mọi điểm đại diện trên đường
+là biển trạm xe buýt chính thức.
 
-<div class="road r2"></div>
-
-<div class="busline blue"></div>
-
-
-<div class="dot a">
-A
-</div>
-
-<div class="dot s1">
-🚏
-</div>
-
-<div class="dot s2">
-🚏
-</div>
-
-<div class="dot b">
-B
-</div>
-
-
-<div class="maplabel la">
-84 Trần Phú
-</div>
-
-<div class="maplabel ls1">
-Trạm Trần Phú
-</div>
-
-<div class="maplabel ls2">
-Lý Tự Trọng / Quang Trung
-</div>
-
-<div class="maplabel lb">
-Bò Nướng Lạc Cảnh
-</div>
-
-
-</div>
-
-
-<div class="small">
-
-Sơ đồ tuyến 02,
-chưa phải bản đồ GPS.
-
-</div>
-
-</div>
-
-
-
-<div class="detail-card">
-
-<span class="badge">
-Phương án khác
-</span>
-
-
-<h2>
-🚌 Tuyến 02
-</h2>
-
-
-<div class="metrics">
-
-
-<div class="metric">
-
-<strong>
-20 phút
-</strong>
-
-<small>
-Tổng thời gian
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-520 m
-</strong>
-
-<small>
-Tổng đi bộ
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-7 trạm
-</strong>
-
-<small>
-Trên xe
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-~7.000đ
-</strong>
-
-<small>
-Vé tham khảo
-</small>
-
-</div>
-
-
-</div>
-
-
-
-<div class="timeline">
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~120 m
-</b>
-
-<div class="small">
-
-Từ 84 Trần Phú đến
-trạm khu vực 96 Trần Phú,
-gần Trần Quang Khải.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚌 Lên tuyến 02
-</b>
-
-<div class="small">
-
-Đi khoảng 7 trạm,
-khoảng 13 phút.
-
-Khung giờ tham khảo:
-05:20–19:10.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚏 Xuống tại Lý Tự Trọng
-</b>
-
-<div class="small">
-
-Khu vực gần giao
-Quang Trung.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~400 m
-</b>
-
-<div class="small">
-
-Từ khu vực
-Lý Tự Trọng / Quang Trung
-đến Bò Nướng Lạc Cảnh.
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div class="schedule">
-
-<b>
-🕐 Lịch minh họa tuyến 02
-</b>
-
-
-<div class="times">
-
-
-<div class="time next">
-
-<b>
-14:32
-</b>
-
-<br>
-
-<small>
-Gần nhất
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-15:22
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-16:12
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-17:02
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<div class="actions">
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Đến trạm lên
-
-</a>
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%20%26%20Quang%20Trung%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Trạm xuống → đích
-
-</a>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================
-         TUYẾN 05
-===================== -->
-
-<section class="route-panel p05">
-
-
-<div class="card">
-
-<div class="map">
-
-<div class="road r1"></div>
-
-<div class="road r2"></div>
-
-<div class="busline orange"></div>
-
-
-<div class="dot a">
-A
-</div>
-
-<div class="dot s1">
-🚏
-</div>
-
-<div class="dot s2">
-🚏
-</div>
-
-<div class="dot b">
-B
-</div>
-
-
-<div class="maplabel la">
-84 Trần Phú
-</div>
-
-<div class="maplabel ls1">
-Trạm Trần Phú
-</div>
-
-<div class="maplabel ls2">
-Trạm Nguyễn Chánh
-</div>
-
-<div class="maplabel lb">
-Bò Nướng Lạc Cảnh
-</div>
-
-
-</div>
-
-
-<div class="small">
-
-Sơ đồ tuyến 05,
-chưa phải bản đồ GPS.
-
-</div>
-
-</div>
-
-
-
-<div class="detail-card">
-
-<span class="badge">
-Phương án khác
-</span>
-
-
-<h2>
-🚌 Tuyến 05
-</h2>
-
-
-<div class="metrics">
-
-
-<div class="metric">
-
-<strong>
-22 phút
-</strong>
-
-<small>
-Tổng thời gian
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-600 m
-</strong>
-
-<small>
-Tổng đi bộ
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-7 trạm
-</strong>
-
-<small>
-Trên xe
-</small>
-
-</div>
-
-
-<div class="metric">
-
-<strong>
-~7.000đ
-</strong>
-
-<small>
-Vé tham khảo
-</small>
-
-</div>
-
-
-</div>
-
-
-
-<div class="timeline">
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~120 m
-</b>
-
-<div class="small">
-
-Từ 84 Trần Phú
-đến trạm khu vực
-96 Trần Phú.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚌 Lên tuyến 05
-</b>
-
-<div class="small">
-
-Đi khoảng 7 trạm,
-khoảng 14 phút.
-
-Khung giờ tham khảo:
-05:20–18:35.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚏 Xuống tại Nguyễn Chánh
-</b>
-
-<div class="small">
-
-Khu vực gần
-Ngô Gia Tự.
-
-</div>
-
-</div>
-
-
-
-<div class="step">
-
-<b>
-🚶 Đi bộ ~480 m
-</b>
-
-<div class="small">
-
-Từ Nguyễn Chánh đến
-Bò Nướng Lạc Cảnh.
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<div class="schedule">
-
-<b>
-🕐 Lịch minh họa tuyến 05
-</b>
-
-
-<div class="times">
-
-
-<div class="time next">
-
-<b>
-14:27
-</b>
-
-<br>
-
-<small>
-Gần nhất
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-15:02
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-15:37
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-<div class="time">
-
-<b>
-16:12
-</b>
-
-<br>
-
-<small>
-Chuyến kế
-</small>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<div class="actions">
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Đến trạm lên
-
-</a>
-
-
-<a
- class="find-link"
- href="https://www.google.com/maps/dir/?api=1&amp;origin=Nguy%E1%BB%85n%20Ch%C3%A1nh%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
->
-
-🚶 Trạm xuống → đích
-
-</a>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-</div>
-
-</section>
-
-
-<section class="notice">
-
-<b>V4.4:</b>
-
-Bấm Tuyến 02, 04 hoặc 05 sẽ chỉ hiện
-chi tiết của tuyến đang chọn.
-
-Các số phút, quãng đường, số trạm
-và giờ xe hiện vẫn là dữ liệu mẫu
-để kiểm tra giao diện.
-
-Chưa phải dữ liệu GPS hoặc
-thời gian thực.
+Lịch xe là ước tính, chưa phải GPS thời gian thực.
 
 </section>
 
 
 </main>
+
+
+<script>
+
+
+/*
+==========================================
+GOOGLE MAPS API KEY
+==========================================
+
+Thay chuỗi bên dưới bằng API key thật.
+*/
+
+const API_KEY =
+"DAN_API_KEY_CUA_BAN_VAO_DAY";
+
+
+/*
+==========================================
+GIỚI HẠN KHU VỰC NHA TRANG
+==========================================
+*/
+
+const NT_BOUNDS = {
+
+ south:12.15,
+
+ west:109.10,
+
+ north:12.35,
+
+ east:109.28
+
+};
+
+
+/*
+==========================================
+HÀM TẠO ĐIỂM TUYẾN
+==========================================
+*/
+
+function createStop(
+ id,
+ name,
+ address,
+ note
+){
+
+ return {
+
+  id:id,
+
+  name:name,
+
+  address:address,
+
+  note:note,
+
+  lat:null,
+
+  lng:null
+
+ };
+
+}
+
+
+/*
+==========================================
+DATABASE TUYẾN 01–06
+==========================================
+*/
+
+const DATABASE = {
+
+
+/* ========= TUYẾN 01 ========= */
+
+"01":{
+
+ hours:"05:25-19:15",
+
+ headway:50,
+
+ price:"~7.000đ",
+
+ color:"#7b1fa2",
+
+ roads:
+
+ "Vĩnh Trường → Võ Thị Sáu → "
+ + "Tô Hiệu → Trường Sơn → "
+ + "Phước Long → Lê Hồng Phong → "
+ + "Mã Vòng → 23/10 → QL1A → "
+ + "Tỉnh Lộ 2 → Trạm Thành",
+
+ stops:[
+
+  createStop(
+
+   "01-A",
+
+   "UBND Vĩnh Trường",
+
+   "UBND Vĩnh Trường, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "01-B",
+
+   "Mã Vòng",
+
+   "Mã Vòng, Nha Trang",
+
+   "Điểm nằm trên lộ trình công bố"
+
+  ),
+
+  createStop(
+
+   "01-C",
+
+   "Trạm Thành",
+
+   "Trạm Thành, Diên Khánh, Khánh Hòa",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+},
+
+
+/* ========= TUYẾN 02 ========= */
+
+"02":{
+
+ hours:"05:20-19:10",
+
+ headway:50,
+
+ price:"~5.000đ",
+
+ color:"#1769aa",
+
+ roads:
+
+ "Bình Tân → Tô Hiệu → Trần Phú → "
+ + "Trần Quang Khải → Hùng Vương → "
+ + "Lê Thánh Tôn → Đinh Tiên Hoàng → "
+ + "Lý Tự Trọng → Quang Trung → "
+ + "Trần Quý Cáp → Mã Vòng → "
+ + "23/10 → QL1A → Tỉnh Lộ 2 → "
+ + "Trạm Thành",
+
+ stops:[
+
+  createStop(
+
+   "02-A",
+
+   "Bình Tân",
+
+   "Bình Tân, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "02-96",
+
+   "96 Trần Phú",
+
+   "96 Trần Phú, Nha Trang",
+
+   "Địa chỉ được ghi trong lộ trình công khai"
+
+  ),
+
+  createStop(
+
+   "02-B",
+
+   "Trạm Thành",
+
+   "Trạm Thành, Diên Khánh, Khánh Hòa",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+},
+
+
+/* ========= TUYẾN 03 ========= */
+
+"03":{
+
+ hours:"05:50-17:55",
+
+ headway:30,
+
+ price:"~4.000đ",
+
+ color:"#c62828",
+
+ roads:
+
+ "Chợ Đầm → Pasteur → Trần Hưng Đạo → "
+ + "Nguyễn Chánh → Ngô Gia Tự → "
+ + "Cửu Long → Lê Hồng Phong → "
+ + "Nguyễn Tất Thành → Sông Lô",
+
+ stops:[
+
+  createStop(
+
+   "03-A",
+
+   "Chợ Đầm",
+
+   "Chợ Đầm, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "03-NC",
+
+   "Nguyễn Chánh",
+
+   "Đường Nguyễn Chánh, Nha Trang",
+
+   "Điểm nằm trên lộ trình công bố"
+
+  ),
+
+  createStop(
+
+   "03-B",
+
+   "Sông Lô",
+
+   "Sông Lô, Nha Trang",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+},
+
+
+/* ========= TUYẾN 04 ========= */
+
+"04":{
+
+ hours:"05:10-19:10",
+
+ headway:45,
+
+ price:"~4.000đ",
+
+ color:"#087f5b",
+
+ roads:
+
+ "Hòn Xện → Nguyễn Dữ → Phạm Văn Đồng → "
+ + "Tháp Bà → 2/4 → Quang Trung → "
+ + "Lý Thánh Tôn → Lê Thánh Tôn → "
+ + "Nguyễn Thiện Thuật → Trần Quang Khải → "
+ + "Trần Phú → Cầu Đá → Cảng Vinpearl",
+
+ stops:[
+
+  createStop(
+
+   "04-A",
+
+   "Hòn Xện",
+
+   "Hòn Xện, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "04-86",
+
+   "86 Trần Phú",
+
+   "86 Trần Phú, Nha Trang",
+
+   "Địa chỉ được ghi trong lộ trình công khai"
+
+  ),
+
+  createStop(
+
+   "04-96",
+
+   "96 Trần Phú",
+
+   "96 Trần Phú, Nha Trang",
+
+   "Địa chỉ được ghi trong lộ trình công khai"
+
+  ),
+
+  createStop(
+
+   "04-B",
+
+   "Cảng Vinpearl",
+
+   "Cảng Vinpearl Nha Trang",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+},
+
+
+/* ========= TUYẾN 05 ========= */
+
+"05":{
+
+ hours:"05:20-18:35",
+
+ headway:35,
+
+ price:"~4.000đ",
+
+ color:"#b86612",
+
+ roads:
+
+ "Bắc Cầu Trần Phú → Nguyễn Bỉnh Khiêm → "
+ + "Ngô Quyền → Phan Chu Trinh → "
+ + "Hoàng Hoa Thám → Nguyễn Chánh → "
+ + "Lê Thánh Tôn → Tô Hiến Thành → "
+ + "Nguyễn Thị Minh Khai → Trần Phú → "
+ + "Dã Tượng → Võ Thị Sáu → Phước Long → "
+ + "Lê Hồng Phong → Nguyễn Tất Thành → "
+ + "Cầu Bình Tân → Hòn Rớ",
+
+ stops:[
+
+  createStop(
+
+   "05-A",
+
+   "Bắc Cầu Trần Phú",
+
+   "Cầu Trần Phú, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "05-96",
+
+   "96 Trần Phú",
+
+   "96 Trần Phú, Nha Trang",
+
+   "Địa chỉ được ghi trong lộ trình công khai"
+
+  ),
+
+  createStop(
+
+   "05-NC",
+
+   "Nguyễn Chánh",
+
+   "Đường Nguyễn Chánh, Nha Trang",
+
+   "Điểm nằm trên lộ trình công bố"
+
+  ),
+
+  createStop(
+
+   "05-B",
+
+   "Hòn Rớ",
+
+   "Hòn Rớ, Nha Trang",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+},
+
+
+/* ========= TUYẾN 06 ========= */
+
+"06":{
+
+ hours:"05:20-19:00",
+
+ headway:45,
+
+ price:"~4.000–7.000đ",
+
+ color:"#00838f",
+
+ roads:
+
+ "Vĩnh Điềm Trung, GO!/Big C cũ → "
+ + "23/10 → Mã Vòng → Yersin → "
+ + "Quang Trung → 2/4 → Nguyễn Xiển → "
+ + "QL1A → Chợ Lương Sơn",
+
+ stops:[
+
+  createStop(
+
+   "06-A",
+
+   "Vĩnh Điềm Trung",
+
+   "GO! Nha Trang, Đường 19 Tháng 5, Nha Trang",
+
+   "Điểm đầu tuyến"
+
+  ),
+
+  createStop(
+
+   "06-MV",
+
+   "Mã Vòng",
+
+   "Mã Vòng, Nha Trang",
+
+   "Điểm nằm trên lộ trình công bố"
+
+  ),
+
+  createStop(
+
+   "06-B",
+
+   "Chợ Lương Sơn",
+
+   "Chợ Lương Sơn, Nha Trang",
+
+   "Điểm cuối tuyến"
+
+  )
+
+ ]
+
+}
+
+};
+
+
+/*
+==========================================
+BIẾN ỨNG DỤNG
+==========================================
+*/
+
+let map;
+
+let geocoder;
+
+let directionsService;
+
+let autocompleteFrom;
+
+let autocompleteTo;
+
+let fromPlace;
+
+let toPlace;
+
+let routeOptions = [];
+
+let selectedOption;
+
+let mapObjects = [];
+
+
+const element = id =>
+document.getElementById(id);
+
+
+const radians = value =>
+value * Math.PI / 180;
+
+
+/*
+==========================================
+TÍNH KHOẢNG CÁCH ĐƯỜNG THẲNG
+==========================================
+*/
+
+function distanceKm(
+ pointA,
+ pointB
+){
+
+ const deltaLatitude =
+
+ radians(
+  pointB.lat
+  -
+  pointA.lat
+ );
+
+
+ const deltaLongitude =
+
+ radians(
+  pointB.lng
+  -
+  pointA.lng
+ );
+
+
+ const calculation =
+
+ Math.sin(
+  deltaLatitude / 2
+ ) ** 2
+
+ +
+
+ Math.cos(
+  radians(pointA.lat)
+ )
+
+ *
+
+ Math.cos(
+  radians(pointB.lat)
+ )
+
+ *
+
+ Math.sin(
+  deltaLongitude / 2
+ ) ** 2;
+
+
+ return 12742
+
+ *
+
+ Math.asin(
+  Math.sqrt(calculation)
+ );
+
+}
+
+
+/*
+==========================================
+TRẠNG THÁI ỨNG DỤNG
+==========================================
+*/
+
+function showStatus(
+ text,
+ isError
+){
+
+ element("status").textContent =
+ text;
+
+
+ element("status").className =
+
+ "status"
+
+ +
+
+ (
+  isError
+  ? " err"
+  : ""
+ );
+
+}
+
+
+/*
+==========================================
+CHUYỂN GOOGLE PLACE THÀNH DỮ LIỆU APP
+==========================================
+*/
+
+function convertGooglePlace(place){
+
+ if(
+  !place
+  ||
+  !place.geometry
+ ){
+
+  return null;
+
+ }
+
+
+ return {
+
+  name:
+  place.name
+  ||
+  place.formatted_address,
+
+  address:
+  place.formatted_address
+  ||
+  place.name,
+
+  lat:
+  place.geometry.location.lat(),
+
+  lng:
+  place.geometry.location.lng()
+
+ };
+
+}
+
+
+/*
+==========================================
+GOOGLE GEOCODING
+==========================================
+*/
+
+function geocodeAddress(address){
+
+ return new Promise(
+
+  function(resolve,reject){
+
+   geocoder.geocode(
+
+    {
+
+     address:address,
+
+     bounds:NT_BOUNDS,
+
+     region:"VN"
+
+    },
+
+    function(results,status){
+
+     if(
+      status === "OK"
+      &&
+      results[0]
+     ){
+
+      resolve({
+
+       name:address,
+
+       address:
+       results[0].formatted_address,
+
+       lat:
+       results[0]
+       .geometry
+       .location
+       .lat(),
+
+       lng:
+       results[0]
+       .geometry
+       .location
+       .lng()
+
+      });
+
+     }
+     else{
+
+      reject(
+
+       new Error(
+        "Không tìm thấy: "
+        + address
+       )
+
+      );
+
+     }
+
+    }
+
+   );
+
+  }
+
+ );
+
+}
+
+
+/*
+==========================================
+KHỞI TẠO GOOGLE MAPS
+==========================================
+*/
+
+async function initMap(){
+
+ map =
+
+ new google.maps.Map(
+
+  element("map"),
+
+  {
+
+   center:{
+    lat:12.2388,
+    lng:109.1967
+   },
+
+   zoom:13,
+
+   mapTypeControl:false,
+
+   streetViewControl:false
+
+  }
+
+ );
+
+
+ geocoder =
+ new google.maps.Geocoder();
+
+
+ directionsService =
+ new google.maps.DirectionsService();
+
+
+ const nhaTrangBounds =
+
+ new google.maps.LatLngBounds(
+
+  {
+   lat:NT_BOUNDS.south,
+   lng:NT_BOUNDS.west
+  },
+
+  {
+   lat:NT_BOUNDS.north,
+   lng:NT_BOUNDS.east
+  }
+
+ );
+
+
+ const autocompleteOptions = {
+
+  bounds:nhaTrangBounds,
+
+  strictBounds:true,
+
+  componentRestrictions:{
+   country:"vn"
+  },
+
+  fields:[
+   "name",
+   "formatted_address",
+   "geometry"
+  ]
+
+ };
+
+
+ autocompleteFrom =
+
+ new google.maps.places.Autocomplete(
+
+  element("from"),
+
+  autocompleteOptions
+
+ );
+
+
+ autocompleteTo =
+
+ new google.maps.places.Autocomplete(
+
+  element("to"),
+
+  autocompleteOptions
+
+ );
+
+
+ autocompleteFrom.addListener(
+
+  "place_changed",
+
+  function(){
+
+   fromPlace =
+
+   convertGooglePlace(
+    autocompleteFrom.getPlace()
+   );
+
+  }
+
+ );
+
+
+ autocompleteTo.addListener(
+
+  "place_changed",
+
+  function(){
+
+   toPlace =
+
+   convertGooglePlace(
+    autocompleteTo.getPlace()
+   );
+
+  }
+
+ );
+
+
+ element("from").addEventListener(
+
+  "input",
+
+  function(){
+
+   fromPlace = null;
+
+  }
+
+ );
+
+
+ element("to").addEventListener(
+
+  "input",
+
+  function(){
+
+   toPlace = null;
+
+  }
+
+ );
+
+
+ element("find").addEventListener(
+
+  "click",
+
+  findRoute
+
+ );
+
+
+ showStatus(
+
+  "Google Maps đã sẵn sàng. "
+  + "Đang định vị database tuyến 01–06..."
+
+ );
+
+
+ await geocodeDatabase();
+
+
+ showStatus(
+
+  "✓ Database 01–06 đã được Google định vị. "
+  + "Có thể tìm đường."
+
+ );
+
+}
+
+
+/*
+==========================================
+ĐỊNH VỊ DATABASE
+==========================================
+*/
+
+async function geocodeDatabase(){
+
+ const allStops =
+
+ Object.values(DATABASE)
+
+ .flatMap(
+
+  function(route){
+
+   return route.stops;
+
+  }
+
+ );
+
+
+ for(
+  const stop of allStops
+ ){
+
+  try{
+
+   const location =
+
+   await geocodeAddress(
+    stop.address
+   );
+
+
+   stop.lat =
+   location.lat;
+
+
+   stop.lng =
+   location.lng;
+
+
+   stop.geocodedAddress =
+   location.address;
+
+  }
+  catch(error){
+
+   stop.error = true;
+
+  }
+
+ }
+
+}
+
+
+/*
+==========================================
+TÌM ĐƯỜNG
+==========================================
+*/
+
+async function findRoute(){
+
+ try{
+
+  showStatus(
+
+   "Đang tìm địa điểm và "
+   + "so sánh tuyến 01–06..."
+
+  );
+
+
+  if(!fromPlace){
+
+   fromPlace =
+
+   await geocodeAddress(
+
+    element("from").value
+    +
+    ", Nha Trang"
+
+   );
+
+  }
+
+
+  if(!toPlace){
+
+   toPlace =
+
+   await geocodeAddress(
+
+    element("to").value
+    +
+    ", Nha Trang"
+
+   );
+
+  }
+
+
+  routeOptions = [];
+
+
+  for(
+   const routeID
+   of Object.keys(DATABASE)
+  ){
+
+   const route =
+   DATABASE[routeID];
+
+
+   const validStops =
+
+   route.stops.filter(
+
+    function(stop){
+
+     return stop.lat !== null
+     &&
+     stop.lng !== null;
+
+    }
+
+   );
+
+
+   if(validStops.length < 2){
+
+    continue;
+
+   }
+
+
+   let bestOption = null;
+
+
+   for(
+    let startIndex = 0;
+    startIndex < validStops.length;
+    startIndex++
+   ){
+
+    for(
+     let endIndex = 0;
+     endIndex < validStops.length;
+     endIndex++
+    ){
+
+     if(
+      startIndex === endIndex
+     ){
+
+      continue;
+
+     }
+
+
+     const boardingStop =
+     validStops[startIndex];
+
+
+     const exitStop =
+     validStops[endIndex];
+
+
+     const walkToBoarding =
+
+     distanceKm(
+      fromPlace,
+      boardingStop
+     );
+
+
+     const walkFromExit =
+
+     distanceKm(
+      exitStop,
+      toPlace
+     );
+
+
+     const totalWalking =
+
+     walkToBoarding
+     +
+     walkFromExit;
+
+
+     if(
+      !bestOption
+      ||
+      totalWalking
+      <
+      bestOption.walkingKm
+     ){
+
+      bestOption = {
+
+       id:routeID,
+
+       route:route,
+
+       boardingStop:boardingStop,
+
+       exitStop:exitStop,
+
+       walkToBoarding:
+       walkToBoarding,
+
+       walkFromExit:
+       walkFromExit,
+
+       walkingKm:
+       totalWalking
+
+      };
+
+     }
+
+    }
+
+   }
+
+
+   bestOption.walkingMeters =
+
+   Math.round(
+    bestOption.walkingKm
+    * 1000
+   );
+
+
+   bestOption.totalMinutes =
+
+   Math.max(
+
+    8,
+
+    Math.round(
+
+     bestOption.walkingKm
+     * 12
+
+     +
+
+     12
+
+    )
+
+   );
+
+
+   routeOptions.push(
+    bestOption
+   );
+
+  }
+
+
+  routeOptions.sort(
+
+   function(optionA,optionB){
+
+    if(
+     element("pref").value
+     ===
+     "time"
+    ){
+
+     return optionA.totalMinutes
+     -
+     optionB.totalMinutes;
+
+    }
+
+
+    return optionA.walkingMeters
+    -
+    optionB.walkingMeters;
+
+   }
+
+  );
+
+
+  if(!routeOptions.length){
+
+   throw new Error(
+
+    "Không có đủ điểm tuyến "
+    + "để tạo hành trình."
+
+   );
+
+  }
+
+
+  selectedOption =
+  routeOptions[0];
+
+
+  element("out")
+  .classList
+  .remove("hide");
+
+
+  renderApplication();
+
+
+  showStatus(
+
+   "✓ Đã so sánh 6 tuyến "
+   + "bằng các điểm đã định vị."
+
+  );
+
+
+  element("out").scrollIntoView({
+
+   behavior:"smooth"
+
+  });
+
+ }
+ catch(error){
+
+  showStatus(
+   error.message,
+   true
+  );
+
+ }
+
+}
+
+
+/*
+==========================================
+RENDER
+==========================================
+*/
+
+function renderApplication(){
+
+ renderTabs();
+
+ renderDetails();
+
+ drawMap();
+
+}
+
+
+/*
+==========================================
+TAB TUYẾN
+==========================================
+*/
+
+function renderTabs(){
+
+ element("tabs").innerHTML =
+
+ routeOptions.map(
+
+  function(option){
+
+   const activeClass =
+
+   option.id
+   ===
+   selectedOption.id
+
+   ? "on"
+
+   : "";
+
+
+   return `
+
+   <button
+    type="button"
+    class="tab ${activeClass}"
+    data-route="${option.id}"
+   >
+
+   <b>
+   Tuyến ${option.id}
+   </b>
+
+   <br>
+
+   ${option.totalMinutes} phút
+
+   <br>
+
+   <small>
+   Đi bộ ${option.walkingMeters} m
+   </small>
+
+   </button>
+
+   `;
+
+  }
+
+ ).join("");
+
+
+ document
+
+ .querySelectorAll(
+  "[data-route]"
+ )
+
+ .forEach(
+
+  function(button){
+
+   button.addEventListener(
+
+    "click",
+
+    function(){
+
+     selectedOption =
+
+     routeOptions.find(
+
+      function(option){
+
+       return option.id
+       ===
+       button.dataset.route;
+
+      }
+
+     );
+
+
+     renderApplication();
+
+    }
+
+   );
+
+  }
+
+ );
+
+}
+
+
+/*
+==========================================
+LỊCH XE DỰ KIẾN
+==========================================
+*/
+
+function createSchedule(option){
+
+ const operatingTimes =
+
+ option.route.hours.split("-");
+
+
+ function timeToMinutes(text){
+
+  const parts =
+  text.split(":");
+
+
+  return
+
+  Number(parts[0])
+  * 60
+
+  +
+
+  Number(parts[1]);
+
+ }
+
+
+ const firstBus =
+
+ timeToMinutes(
+  operatingTimes[0]
+ )
+
+ +
+
+ 12;
+
+
+ const lastBus =
+
+ timeToMinutes(
+  operatingTimes[1]
+ )
+
+ +
+
+ 12;
+
+
+ const now =
+ new Date();
+
+
+ const currentMinutes =
+
+ now.getHours() * 60
+
+ +
+
+ now.getMinutes();
+
+
+ const times = [];
+
+
+ for(
+
+  let time = firstBus;
+
+  time <= lastBus;
+
+  time += option.route.headway
+
+ ){
+
+  if(
+   time >= currentMinutes
+   &&
+   times.length < 4
+  ){
+
+   times.push(time);
+
+  }
+
+ }
+
+
+ if(!times.length){
+
+  for(
+
+   let time = firstBus;
+
+   time <= lastBus
+   &&
+   times.length < 4;
+
+   time += option.route.headway
+
+  ){
+
+   times.push(time);
+
+  }
+
+ }
+
+
+ return times.map(
+
+  function(time){
+
+   const hour =
+
+   String(
+    Math.floor(time / 60) % 24
+   )
+   .padStart(2,"0");
+
+
+   const minute =
+
+   String(time % 60)
+   .padStart(2,"0");
+
+
+   const information =
+
+   time >= currentMinutes
+
+   ? "~"
+     + (time - currentMinutes)
+     + " phút"
+
+   : "ngày kế";
+
+
+   return `
+
+   <div class="time">
+
+   <b>
+   ${hour}:${minute}
+   </b>
+
+   <br>
+
+   <small>
+   ${information}
+   </small>
+
+   </div>
+
+   `;
+
+  }
+
+ ).join("");
+
+}
+
+
+/*
+==========================================
+CHI TIẾT HÀNH TRÌNH
+==========================================
+*/
+
+function renderDetails(){
+
+ const option =
+ selectedOption;
+
+
+ element("detail").innerHTML = `
+
+ <span class="verified">
+
+ ✓ Điểm công khai
+ + Google định vị
+
+ </span>
+
+
+ <h2>
+
+ 🚌 Tuyến ${option.id}
+
+ </h2>
+
+
+ <div class="metrics">
+
+
+ <div class="m">
+
+ <b>
+ ${option.totalMinutes} phút
+ </b>
+
+ <small>
+ Tổng ước tính
+ </small>
+
+ </div>
+
+
+ <div class="m">
+
+ <b>
+ ${option.walkingMeters} m
+ </b>
+
+ <small>
+ Tổng đi bộ
+ </small>
+
+ </div>
+
+
+ <div class="m">
+
+ <b>
+ ${option.route.price}
+ </b>
+
+ <small>
+ Vé tham khảo
+ </small>
+
+ </div>
+
+
+ <div class="m">
+
+ <b>
+ ${option.route.hours}
+ </b>
+
+ <small>
+ Giờ hoạt động
+ </small>
+
+ </div>
+
+
+ </div>
+
+
+ <div class="tl">
+
+
+ <div class="step">
+
+ <b>
+
+ 🚶 Đi bộ
+ ${Math.round(
+  option.walkToBoarding * 1000
+ )}
+ m
+
+ </b>
+
+ <div class="small">
+
+ Từ ${fromPlace.name}
+
+ đến ${option.boardingStop.name}.
+
+ ${option.boardingStop.note}.
+
+ </div>
+
+ </div>
+
+
+ <div class="step">
+
+ <b>
+ 🚌 Lên tuyến ${option.id}
+ </b>
+
+ <div class="small">
+
+ <b>Lộ trình công bố:</b>
+
+ ${option.route.roads}
+
+ </div>
+
+ </div>
+
+
+ <div class="step">
+
+ <b>
+
+ 🚏 Xuống tại
+ ${option.exitStop.name}
+
+ </b>
+
+ <div class="small">
+
+ ${option.exitStop.address}.
+
+ ${option.exitStop.note}.
+
+ </div>
+
+ </div>
+
+
+ <div class="step">
+
+ <b>
+
+ 🚶 Đi bộ
+ ${Math.round(
+  option.walkFromExit * 1000
+ )}
+ m
+
+ </b>
+
+ <div class="small">
+
+ Đến ${toPlace.name}.
+
+ </div>
+
+ </div>
+
+
+ </div>
+
+
+ <h3>
+ 🕐 Xe dự kiến tại điểm lên
+ </h3>
+
+
+ <div class="times">
+
+ ${createSchedule(option)}
+
+ </div>
+
+
+ <p class="small">
+
+ Giờ dự kiến theo khung hoạt động
+ và tần suất mẫu.
+
+ Chưa phải GPS thời gian thực.
+
+ </p>
+
+
+ <div class="grid">
+
+
+ <button
+  type="button"
+  id="walkBoarding"
+ >
+ 🚶 Đến điểm lên
+ </button>
+
+
+ <button
+  type="button"
+  id="walkExit"
+ >
+ 🚶 Điểm xuống → đích
+ </button>
+
+
+ </div>
+
+ `;
+
+
+ element("walkBoarding")
+ .addEventListener(
+
+  "click",
+
+  function(){
+
+   openWalking(
+
+    fromPlace.address,
+
+    option.boardingStop.address
+
+   );
+
+  }
+
+ );
+
+
+ element("walkExit")
+ .addEventListener(
+
+  "click",
+
+  function(){
+
+   openWalking(
+
+    option.exitStop.address,
+
+    toPlace.address
+
+   );
+
+  }
+
+ );
+
+}
+
+
+/*
+==========================================
+BẢN ĐỒ
+==========================================
+*/
+
+function clearMap(){
+
+ mapObjects.forEach(
+
+  function(object){
+
+   object.setMap(null);
+
+  }
+
+ );
+
+
+ mapObjects = [];
+
+}
+
+
+function drawMap(){
+
+ clearMap();
+
+
+ const option =
+ selectedOption;
+
+
+ const bounds =
+ new google.maps.LatLngBounds();
+
+
+ function addObject(object){
+
+  mapObjects.push(object);
+
+  return object;
+
+ }
+
+
+ const markerData = [
+
+  [fromPlace,"A"],
+
+  [option.boardingStop,""],
+
+  [option.exitStop,""],
+
+  [toPlace,"B"]
+
+ ];
+
+
+ markerData.forEach(
+
+  function(value){
+
+   const marker =
+
+   addObject(
+
+    new google.maps.Marker({
+
+     map:map,
+
+     position:{
+
+      lat:value[0].lat,
+
+      lng:value[0].lng
+
+     },
+
+     label:value[1],
+
+     title:value[0].name
+
+    })
+
+   );
+
+
+   bounds.extend(
+    marker.getPosition()
+   );
+
+  }
+
+ );
+
+
+ const routePath =
+
+ option.route.stops
+
+ .filter(
+
+  function(stop){
+
+   return stop.lat !== null
+   &&
+   stop.lng !== null;
+
+  }
+
+ )
+
+ .map(
+
+  function(stop){
+
+   return {
+
+    lat:stop.lat,
+
+    lng:stop.lng
+
+   };
+
+  }
+
+ );
+
+
+ addObject(
+
+  new google.maps.Polyline({
+
+   map:map,
+
+   path:routePath,
+
+   strokeColor:
+   option.route.color,
+
+   strokeWeight:6,
+
+   strokeOpacity:0.9
+
+  })
+
+ );
+
+
+ routePath.forEach(
+
+  function(point){
+
+   bounds.extend(point);
+
+  }
+
+ );
+
+
+ drawWalkingLine(
+
+  fromPlace,
+
+  option.boardingStop
+
+ );
+
+
+ drawWalkingLine(
+
+  option.exitStop,
+
+  toPlace
+
+ );
+
+
+ map.fitBounds(
+  bounds,
+  55
+ );
+
+}
+
+
+/*
+==========================================
+VẼ ĐƯỜNG ĐI BỘ
+==========================================
+*/
+
+function drawWalkingLine(
+ start,
+ end
+){
+
+ directionsService.route(
+
+  {
+
+   origin:{
+
+    lat:start.lat,
+
+    lng:start.lng
+
+   },
+
+   destination:{
+
+    lat:end.lat,
+
+    lng:end.lng
+
+   },
+
+   travelMode:
+
+   google.maps
+   .TravelMode
+   .WALKING
+
+  },
+
+  function(result,status){
+
+   if(status !== "OK"){
+
+    return;
+
+   }
+
+
+   const renderer =
+
+   new google.maps
+   .DirectionsRenderer({
+
+    map:map,
+
+    directions:result,
+
+    suppressMarkers:true,
+
+    preserveViewport:true,
+
+    polylineOptions:{
+
+     strokeColor:"#666666",
+
+     strokeOpacity:0.75,
+
+     strokeWeight:4
+
+    }
+
+   });
+
+
+   mapObjects.push(
+    renderer
+   );
+
+  }
+
+ );
+
+}
+
+
+/*
+==========================================
+MỞ GOOGLE MAPS
+==========================================
+*/
+
+function openWalking(
+ origin,
+ destination
+){
+
+ const url =
+
+ "https://www.google.com/maps/dir/?api=1"
+
+ + "&origin="
+
+ + encodeURIComponent(origin)
+
+ + "&destination="
+
+ + encodeURIComponent(destination)
+
+ + "&travelmode=walking";
+
+
+ window.location.href =
+ url;
+
+}
+
+
+/*
+==========================================
+TẢI GOOGLE MAPS
+==========================================
+*/
+
+window.initMap =
+initMap;
+
+
+if(
+ API_KEY
+ ===
+ "DAN_API_KEY_CUA_BAN_VAO_DAY"
+){
+
+ showStatus(
+
+  "Chưa có API key. "
+  + "Thay DAN_API_KEY_CUA_BAN_VAO_DAY "
+  + "trong code.",
+
+  true
+
+ );
+
+}
+else{
+
+ const script =
+
+ document.createElement(
+  "script"
+ );
+
+
+ script.src =
+
+ "https://maps.googleapis.com/maps/api/js"
+
+ + "?key="
+
+ + API_KEY
+
+ + "&libraries=places"
+
+ + "&callback=initMap";
+
+
+ script.async = true;
+
+ script.defer = true;
+
+
+ script.onerror =
+
+ function(){
+
+  showStatus(
+
+   "Không tải được Google Maps. "
+   + "Kiểm tra API key "
+   + "và giới hạn website.",
+
+   true
+
+  );
+
+ };
+
+
+ document.head.appendChild(
+  script
+ );
+
+}
+
+</script>
 
 </body>
 </html>

@@ -2,1527 +2,570 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-
-<meta
- name="viewport"
- content="width=device-width,initial-scale=1,viewport-fit=cover"
->
-
-<meta name="theme-color" content="#087f5b">
-
-<title>Bus Nha Trang V4.1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bus Nha Trang V4.2</title>
 
 <style>
-
-*{
- box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
- margin:0;
-
- font-family:
- -apple-system,
- BlinkMacSystemFont,
- "Segoe UI",
- sans-serif;
-
- background:#f3f6f5;
- color:#17211e;
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#f3f6f5;
+color:#17211e
 }
 
 header{
- background:
- linear-gradient(
-  135deg,
-  #087f5b,
-  #4ca67e
- );
-
- color:white;
-
- padding:
- calc(24px + env(safe-area-inset-top))
- 18px
- 24px;
+background:linear-gradient(135deg,#087f5b,#50a97f);
+color:white;
+padding:35px 18px 25px
 }
 
-h1{
- margin:0;
- font-size:30px;
-}
-
-header p{
- margin:7px 0 0;
- font-size:16px;
-}
+h1{margin:0;font-size:30px}
 
 .wrap{
- max-width:820px;
- margin:auto;
- padding:16px;
+max-width:800px;
+margin:auto;
+padding:16px
 }
 
 .card{
- background:white;
- border-radius:20px;
- padding:17px;
- margin-bottom:15px;
- box-shadow:0 4px 15px #0000000a;
+background:white;
+border-radius:20px;
+padding:17px;
+margin-bottom:15px
 }
 
 label{
- display:block;
- color:#64716d;
- margin:13px 0 6px;
- font-size:14px;
+display:block;
+color:#64716d;
+margin:12px 0 6px
 }
 
-input,
-select{
- width:100%;
- padding:14px;
- border:1px solid #ccd6d2;
- border-radius:14px;
- background:white;
- font-size:16px;
+input,select{
+width:100%;
+padding:14px;
+border:1px solid #cad5d0;
+border-radius:14px;
+font-size:16px
 }
 
 button{
- border:0;
- border-radius:14px;
- padding:14px;
- font-size:15px;
- font-weight:750;
- background:#087f5b;
- color:white;
-}
-
-button:active{
- opacity:0.85;
- transform:scale(0.99);
-}
-
-.full{
- width:100%;
- margin-top:15px;
-}
-
-.secondary{
- background:#e6f4ef;
- color:#086b4e;
-}
-
-.blue{
- background:#1769aa;
-}
-
-.hidden{
- display:none !important;
+width:100%;
+padding:15px;
+border:0;
+border-radius:14px;
+background:#087f5b;
+color:white;
+font-size:16px;
+font-weight:bold;
+margin-top:13px
 }
 
 .status{
- margin-top:11px;
- padding:11px;
- border-radius:12px;
- background:#edf8f4;
- color:#086746;
- font-size:13px;
+margin-top:12px;
+padding:11px;
+border-radius:12px;
+background:#edf8f4;
+color:#086746
 }
 
+.hidden{display:none}
+
 .tabs{
- display:flex;
- gap:8px;
- overflow-x:auto;
+display:flex;
+gap:8px;
+overflow:auto
 }
 
 .tab{
- min-width:116px;
- background:#f2f6f4;
- color:#22322c;
- border:1px solid #d6e0dc;
+min-width:115px;
+background:#eef5f2;
+color:#17211e;
+border:1px solid #d4e0db
 }
 
-.tab.active{
- background:#087f5b;
- color:white;
+.tab.on{
+background:#087f5b;
+color:white
 }
 
-.badge{
- display:inline-block;
- background:#dff4e9;
- color:#086746;
- border-radius:9px;
- padding:5px 9px;
- font-size:12px;
- font-weight:800;
+.map{
+height:280px;
+background:linear-gradient(120deg,#e5efeb 0 75%,#a8dff1 75%);
+border-radius:16px;
+position:relative;
+overflow:hidden
 }
 
-.mapbox{
- height:330px;
- border-radius:16px;
-
- background:
- linear-gradient(
-  145deg,
-  #e7f0ed,
-  #cfded9
- );
-
- position:relative;
- overflow:hidden;
+.line{
+position:absolute;
+left:57%;
+top:35px;
+width:8px;
+height:210px;
+background:#087f5b;
+transform:rotate(8deg);
+border-radius:10px
 }
 
-.road{
- position:absolute;
- background:white;
- border-radius:20px;
- opacity:0.95;
-}
-
-.road.r1{
- width:520px;
- height:30px;
- left:-35px;
- top:148px;
- transform:rotate(-19deg);
-}
-
-.road.r2{
- width:390px;
- height:24px;
- left:60px;
- top:95px;
- transform:rotate(71deg);
-}
-
-.sea{
- position:absolute;
- right:0;
- top:0;
- width:23%;
- height:100%;
- background:#9fdcf1;
-}
-
-.busline{
- position:absolute;
- width:8px;
- height:235px;
- left:58%;
- top:45px;
- border-radius:8px;
- background:#087f5b;
- transform:rotate(12deg);
-}
-
-.pin{
- position:absolute;
- width:34px;
- height:34px;
-
- border-radius:
- 50%
- 50%
- 50%
- 0;
-
- transform:rotate(-45deg);
-
- display:flex;
- align-items:center;
- justify-content:center;
-
- color:white;
- font-weight:800;
-}
-
-.pin span{
- transform:rotate(45deg);
+.dot{
+position:absolute;
+width:30px;
+height:30px;
+border-radius:50%;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold
 }
 
 .start{
- left:54%;
- top:32px;
- background:#1769aa;
+left:53%;
+top:20px;
+background:#1670bd
 }
 
 .stop1{
- left:57%;
- top:105px;
- background:#087f5b;
+left:55%;
+top:90px;
+background:#087f5b
 }
 
 .stop2{
- left:62%;
- top:205px;
- background:#087f5b;
+left:59%;
+top:175px;
+background:#087f5b
 }
 
 .end{
- left:65%;
- top:270px;
- background:#d93636;
+left:62%;
+top:235px;
+background:#d43838
 }
 
 .maplabel{
- position:absolute;
- background:white;
- padding:6px 8px;
- border-radius:8px;
- font-size:11px;
- box-shadow:0 2px 8px #0002;
- max-width:150px;
+position:absolute;
+left:17%;
+background:white;
+padding:5px 8px;
+border-radius:7px;
+font-size:11px
 }
 
-.l1{
- left:31%;
- top:31px;
-}
-
-.l2{
- left:29%;
- top:108px;
-}
-
-.l3{
- left:32%;
- top:213px;
-}
-
-.l4{
- left:30%;
- top:278px;
-}
-
-.mapnote{
- position:absolute;
- left:10px;
- bottom:9px;
-
- background:#ffffffde;
-
- padding:6px 8px;
- border-radius:8px;
- font-size:11px;
-}
+.la{top:22px}
+.l1{top:92px}
+.l2{top:177px}
+.lb{top:237px}
 
 .metrics{
- display:grid;
-
- grid-template-columns:
- repeat(3,1fr);
-
- gap:8px;
- margin:12px 0;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin:12px 0
 }
 
 .metric{
- text-align:center;
- background:#f3f7f5;
- border-radius:12px;
- padding:10px;
+background:#f2f7f5;
+border-radius:11px;
+padding:10px;
+text-align:center
 }
 
-.metric strong{
- display:block;
- color:#087f5b;
+.metric b{
+display:block;
+color:#087f5b
 }
 
 .timeline{
- border-left:4px solid #91d0b9;
- margin:17px 0 8px 11px;
- padding-left:20px;
+border-left:4px solid #8dcfb6;
+padding-left:18px;
+margin:17px 0
 }
 
 .step{
- position:relative;
- margin-bottom:19px;
+margin-bottom:18px
 }
 
-.step:before{
- content:"";
-
- position:absolute;
- left:-28px;
- top:3px;
-
- width:12px;
- height:12px;
-
- border-radius:50%;
- background:#087f5b;
-
- border:3px solid white;
-
- box-shadow:
- 0 0 0 2px #087f5b;
+.small{
+color:#66736e;
+font-size:13px
 }
 
-.step b{
- display:block;
-}
-
-.muted{
- color:#65736e;
- font-size:13px;
- line-height:1.5;
-}
-
-.stopbox{
- background:#f2faf7;
- border-radius:14px;
- padding:13px;
- margin-top:13px;
+.schedule{
+background:#f2faf7;
+border-radius:14px;
+padding:12px
 }
 
 .times{
- display:flex;
- gap:8px;
- overflow-x:auto;
- padding:9px 0;
+display:flex;
+gap:7px;
+overflow:auto;
+margin-top:8px
 }
 
 .time{
- min-width:92px;
-
- background:#edf8f4;
-
- border:
- 1px solid #b8dfd0;
-
- border-radius:11px;
- padding:9px;
- text-align:center;
+min-width:90px;
+padding:9px;
+background:white;
+border:1px solid #b9dfd1;
+border-radius:10px;
+text-align:center
 }
 
 .time.next{
- background:#087f5b;
- color:white;
-}
-
-.time strong{
- display:block;
- font-size:17px;
-}
-
-.grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
- margin-top:12px;
+background:#087f5b;
+color:white
 }
 
 .notice{
- background:#fff6db;
- color:#735c0b;
- border-radius:14px;
- padding:13px;
- font-size:12px;
- line-height:1.5;
+background:#fff5d7;
+color:#745b08;
+border-radius:14px;
+padding:13px;
+font-size:12px
 }
-
-@media(max-width:560px){
-
- .grid{
-  grid-template-columns:1fr;
- }
-
- .metrics{
-  grid-template-columns:1fr 1fr;
- }
-
-}
-
 </style>
 </head>
+
 
 <body>
 
 <header>
-
 <h1>🚌 Bus Nha Trang</h1>
-
-<p>
-V4.1 · Hành trình và lịch xe dự kiến
-</p>
-
+<p>V4.2 · Hành trình xe buýt</p>
 </header>
 
-<main class="wrap">
 
-<section class="card">
+<div class="wrap">
+
+<div class="card">
 
 <label>📍 Đi từ</label>
 
 <input
- id="from"
- value="Quinter Central, 84 Trần Phú"
- placeholder="Ví dụ: quinter hotel"
+id="from"
+value="Quinter Central, 84 Trần Phú"
 >
+
 
 <label>🏁 Đi đến</label>
 
 <input
- id="to"
- value="Bò Nướng Lạc Cảnh"
- placeholder="Ví dụ: bo nuong lac canh"
+id="to"
+value="Bò Nướng Lạc Cảnh"
 >
+
 
 <label>Ưu tiên</label>
 
 <select id="pref">
 
-<option value="walk">
+<option>
 🚶 Đi bộ ít nhất
 </option>
 
-<option value="transfer">
+<option>
 🚌 Ít đổi tuyến nhất
 </option>
 
-<option value="fast">
+<option>
 ⚡ Nhanh nhất
 </option>
 
 </select>
 
+
 <button
- id="findButton"
- type="button"
- class="full"
+type="button"
+onclick="timDuong()"
 >
 🔎 TÌM ĐƯỜNG
 </button>
 
+
 <div
- id="status"
- class="status"
+id="status"
+class="status"
 >
-Bản V4.1 chạy không cần API key.
-Bản đồ hiện là sơ đồ hành trình mẫu.
+V4.2 sẵn sàng.
 </div>
 
-</section>
+</div>
 
-<section
- id="result"
- class="hidden"
+
+<div
+id="result"
+class="hidden"
 >
 
 <div class="card">
 
 <div
- id="routeTabs"
- class="tabs"
+id="tabs"
+class="tabs"
 ></div>
 
 </div>
 
+
 <div class="card">
 
-<div class="mapbox">
+<div class="map">
 
-<div class="road r1"></div>
+<div class="line"></div>
 
-<div class="road r2"></div>
-
-<div class="sea"></div>
-
-<div class="busline"></div>
-
-<div class="pin start">
-<span>A</span>
+<div class="dot start">
+A
 </div>
 
-<div class="pin stop1">
-<span>🚏</span>
+<div class="dot stop1">
+🚏
 </div>
 
-<div class="pin stop2">
-<span>🚏</span>
+<div class="dot stop2">
+🚏
 </div>
 
-<div class="pin end">
-<span>B</span>
+<div class="dot end">
+B
 </div>
+
 
 <div
- id="labelFrom"
- class="maplabel l1"
+id="mapFrom"
+class="maplabel la"
 >
 Điểm đi
 </div>
 
 <div
- id="labelBoard"
- class="maplabel l2"
+id="mapBoard"
+class="maplabel l1"
 >
 Trạm lên
 </div>
 
 <div
- id="labelExit"
- class="maplabel l3"
+id="mapExit"
+class="maplabel l2"
 >
 Trạm xuống
 </div>
 
 <div
- id="labelTo"
- class="maplabel l4"
+id="mapTo"
+class="maplabel lb"
 >
 Điểm đến
 </div>
 
-<div class="mapnote">
-
-Sơ đồ minh họa,
-chưa phải bản đồ GPS
-
 </div>
 
 </div>
 
-</div>
 
 <div
- id="journey"
- class="card"
+id="detail"
+class="card"
 ></div>
 
-</section>
+</div>
 
-<section class="notice">
+
+<div class="notice">
 
 <b>Lưu ý:</b>
 
-Giờ xe và khoảng cách đang là ước tính
-để kiểm tra giao diện.
+Giờ xe, khoảng cách và thời gian hiện là dữ liệu thử nghiệm.
 
-Chưa dùng như dữ liệu GPS hoặc bảng giờ
-chính thức theo từng trạm.
+Chưa phải GPS thời gian thực.
 
-</section>
+</div>
 
-</main>
+</div>
+
 
 <script>
 
-"use strict";
+var routes={
 
+"04":{
+minutes:18,
+walk:450,
+hours:"05:10-19:10",
+headway:45,
+price:"~7.000đ",
+board:"Trạm Trần Phú",
+boardAddress:"96 Trần Phú, Nha Trang",
+boardNear:"Trần Phú, gần Trần Quang Khải",
+exit:"Trạm Lý Thánh Tôn",
+exitAddress:"Lý Thánh Tôn, Nha Trang",
+exitNear:"gần Nguyễn Thiện Thuật",
+stops:6
+},
 
-const STOPS = {
+"02":{
+minutes:20,
+walk:520,
+hours:"05:20-19:10",
+headway:50,
+price:"~7.000đ",
+board:"Trạm Trần Phú",
+boardAddress:"96 Trần Phú, Nha Trang",
+boardNear:"Trần Phú, gần Trần Quang Khải",
+exit:"Trạm Lý Tự Trọng",
+exitAddress:"Lý Tự Trọng & Quang Trung, Nha Trang",
+exitNear:"gần Quang Trung",
+stops:7
+},
 
- tranphu96:{
-
-  name:
-  "Trạm Trần Phú",
-
-  address:
-  "96 Trần Phú, Nha Trang",
-
-  road:
-  "Trần Phú",
-
-  near:
-  "gần Trần Quang Khải"
-
- },
-
- lytrong:{
-
-  name:
-  "Trạm Lý Tự Trọng",
-
-  address:
-  "Lý Tự Trọng & Quang Trung, Nha Trang",
-
-  road:
-  "Lý Tự Trọng",
-
-  near:
-  "gần Quang Trung"
-
- },
-
- lysthanhton:{
-
-  name:
-  "Trạm Lý Thánh Tôn",
-
-  address:
-  "Lý Thánh Tôn, Nha Trang",
-
-  road:
-  "Lý Thánh Tôn",
-
-  near:
-  "gần Nguyễn Thiện Thuật"
-
- },
-
- nguyenchang:{
-
-  name:
-  "Trạm Nguyễn Chánh",
-
-  address:
-  "Nguyễn Chánh, Nha Trang",
-
-  road:
-  "Nguyễn Chánh",
-
-  near:
-  "gần Ngô Gia Tự"
-
- }
+"05":{
+minutes:22,
+walk:600,
+hours:"05:20-18:35",
+headway:35,
+price:"~7.000đ",
+board:"Trạm Trần Phú",
+boardAddress:"96 Trần Phú, Nha Trang",
+boardNear:"Trần Phú, gần Trần Quang Khải",
+exit:"Trạm Nguyễn Chánh",
+exitAddress:"Nguyễn Chánh, Nha Trang",
+exitNear:"gần Ngô Gia Tự",
+stops:7
+}
 
 };
 
 
-const ROUTES = {
-
- "04":{
-
-  hours:
-  "05:10–19:10",
-
-  headway:45,
-
-  price:
-  "~7.000đ",
-
-  board:
-  "tranphu96",
-
-  exit:
-  "lysthanhton",
-
-  minutes:18,
-
-  walk:450,
-
-  busMinutes:12,
-
-  stops:6
-
- },
-
- "02":{
-
-  hours:
-  "05:20–19:10",
-
-  headway:50,
-
-  price:
-  "~7.000đ",
-
-  board:
-  "tranphu96",
-
-  exit:
-  "lytrong",
-
-  minutes:20,
-
-  walk:520,
-
-  busMinutes:13,
-
-  stops:7
-
- },
-
- "05":{
-
-  hours:
-  "05:20–18:35",
-
-  headway:35,
-
-  price:
-  "~7.000đ",
-
-  board:
-  "tranphu96",
-
-  exit:
-  "nguyenchang",
-
-  minutes:22,
-
-  walk:600,
-
-  busMinutes:14,
-
-  stops:7
-
- }
-
-};
+var selected="04";
 
 
-let selected = "04";
+function get(id){
 
-
-const $ = id =>
-document.getElementById(id);
-
-
-function safe(text){
-
- return String(text)
-
- .replace(
-
-  /[&<>"']/g,
-
-  character => ({
-
-   "&":"&",
-
-   "<":"<",
-
-   ">":">",
-
-   '"':""",
-
-   "'":"'"
-
-  })[character]
-
- );
+return document.getElementById(id);
 
 }
 
 
-function toMinutes(time){
+function timDuong(){
 
- const parts =
- time.split(":").map(Number);
+try{
 
- return parts[0] * 60
- + parts[1];
+var from=get("from").value;
 
-}
+var to=get("to").value;
 
 
-function formatTime(totalMinutes){
+if(from=="" || to==""){
 
- const hour =
- Math.floor(totalMinutes / 60) % 24;
+alert("Vui lòng nhập điểm đi và điểm đến");
 
- const minute =
- totalMinutes % 60;
-
- return (
-
-  String(hour)
-  .padStart(2,"0")
-
-  + ":"
-
-  + String(minute)
-  .padStart(2,"0")
-
- );
+return;
 
 }
 
 
-function scheduleHTML(){
-
- const route =
- ROUTES[selected];
-
- const now =
- new Date();
-
- const current =
- now.getHours() * 60
- + now.getMinutes();
-
- const parts =
- route.hours.split("–");
-
- /*
-  Xe được giả định tới trạm
-  sau giờ xuất bến 12 phút.
- */
-
- const first =
- toMinutes(parts[0]) + 12;
-
- const last =
- toMinutes(parts[1]) + 12;
-
- const allTimes = [];
-
- for(
-
-  let time = first;
-
-  time <= last;
-
-  time += route.headway
-
- ){
-
-  allTimes.push(time);
-
- }
-
- let upcoming =
-
- allTimes
-
- .filter(
-  time =>
-  time >= current
- )
-
- .slice(0,5);
+selected="04";
 
 
- if(!upcoming.length){
-
-  upcoming =
-  allTimes.slice(0,5);
-
- }
+get("result").style.display="block";
 
 
- const cards =
-
- upcoming
-
- .map((time,index) => {
-
-  const wait =
-  time - current;
-
-  const isNext =
-  index === 0
-  && time >= current;
-
-  const status =
-
-  time >= current
-
-  ? "còn ~"
-    + wait
-    + " phút"
-
-  : "ngày kế";
+get("status").innerHTML=
+"✅ Nút hoạt động. Đang hiển thị kết quả.";
 
 
-  return `
-
-  <div
-   class="
-   time
-   ${isNext ? "next" : ""}
-   "
-  >
-
-  <strong>
-  ${formatTime(time)}
-  </strong>
-
-  <small>
-  ${status}
-  </small>
-
-  </div>
-
-  `;
-
- })
-
- .join("");
+hienThi();
 
 
- return `
+setTimeout(function(){
 
- <div class="stopbox">
+get("result").scrollIntoView();
 
- <b>
+},100);
 
- 🕐 Lịch dự kiến tại
- ${STOPS[route.board].name}
 
- </b>
+}catch(error){
 
- <div class="times">
- ${cards}
- </div>
+alert(
+"Lỗi V4.2: "
++error.message
+);
 
- <div class="muted">
+get("status").innerHTML=
+"❌ Lỗi: "
++error.message;
 
- Tuyến ${selected}
-
- · ${route.hours}
-
- · tần suất giả định
- ${route.headway} phút.
-
- </div>
-
- </div>
-
- `;
+}
 
 }
 
 
-function renderTabs(){
+function hienThi(){
 
- const routeIDs =
- Object.keys(ROUTES);
+hienTabs();
 
-
- $("routeTabs").innerHTML =
-
- routeIDs
-
- .map((routeID,index) => {
-
-  const route =
-  ROUTES[routeID];
-
-
-  return `
-
-  <button
-
-   type="button"
-
-   class="
-   tab
-   ${
-    routeID === selected
-    ? "active"
-    : ""
-   }
-   "
-
-   data-route="${routeID}"
-
-  >
-
-  <b>
-  Tuyến ${routeID}
-  </b>
-
-  <br>
-
-  ${route.minutes} phút
-
-  <br>
-
-  <small>
-  Đi bộ ${route.walk} m
-  </small>
-
-  ${
-   index === 0
-
-   ? `
-   <br>
-
-   <span class="badge">
-   Tốt nhất
-   </span>
-   `
-
-   : ""
-  }
-
-  </button>
-
-  `;
-
- })
-
- .join("");
-
-
- document
-
- .querySelectorAll(
-  "[data-route]"
- )
-
- .forEach(button => {
-
-  button.addEventListener(
-
-   "click",
-
-   function(){
-
-    selected =
-    button.dataset.route;
-
-    renderAll();
-
-   }
-
-  );
-
- });
+hienChiTiet();
 
 }
 
 
-function renderJourney(){
+function hienTabs(){
 
- const route =
- ROUTES[selected];
+var ids=["04","02","05"];
 
- const boarding =
- STOPS[route.board];
+var html="";
 
- const exit =
- STOPS[route.exit];
 
- const from =
- safe(
-
-  $("from").value.trim()
-
-  || "Điểm đi"
-
- );
-
- const to =
- safe(
-
-  $("to").value.trim()
-
-  || "Điểm đến"
-
- );
-
-
- $("journey").innerHTML = `
-
- <span class="badge">
- ⭐ Phương án đề xuất
- </span>
-
- <h2>
- Chi tiết hành trình
- </h2>
-
- <p class="muted">
-
- <b>Từ:</b>
- ${from}
-
- <br>
-
- <b>Đến:</b>
- ${to}
-
- </p>
-
- <div class="metrics">
-
- <div class="metric">
-
- <strong>
- ${route.minutes} phút
- </strong>
-
- <small>
- Tổng dự kiến
- </small>
-
- </div>
-
- <div class="metric">
-
- <strong>
- ${route.walk} m
- </strong>
-
- <small>
- Tổng đi bộ
- </small>
-
- </div>
-
- <div class="metric">
-
- <strong>
- ${route.price}
- </strong>
-
- <small>
- Giá tham khảo
- </small>
-
- </div>
-
- </div>
-
-
- <div class="timeline">
-
- <div class="step">
-
- <b>
- 🚶 Đi bộ đến ${boarding.name}
- </b>
-
- <div class="muted">
-
- ${boarding.road},
- ${boarding.near}.
-
- </div>
-
- </div>
-
-
- <div class="step">
-
- <b>
- 🚌 Lên tuyến ${selected}
- </b>
-
- <div class="muted">
-
- Đi khoảng
- ${route.stops} trạm,
-
- khoảng
- ${route.busMinutes} phút.
-
- <br>
-
- Khung giờ:
- ${route.hours}.
-
- </div>
-
- </div>
-
-
- <div class="step">
-
- <b>
- 🚏 Xuống tại ${exit.name}
- </b>
-
- <div class="muted">
-
- ${exit.road},
- ${exit.near}.
-
- </div>
-
- </div>
-
-
- <div class="step">
-
- <b>
- 🚶 Đi bộ đến ${to}
- </b>
-
- </div>
-
- </div>
-
-
- ${scheduleHTML()}
-
-
- <div class="grid">
-
- <button
-
-  type="button"
-
-  class="blue"
-
-  id="walkToStop"
-
- >
- 🚶 Đi bộ đến trạm lên
- </button>
-
-
- <button
-
-  type="button"
-
-  class="secondary"
-
-  id="walkFromStop"
-
- >
- 🚶 Từ trạm xuống đến đích
- </button>
-
- </div>
-
- `;
-
-
- $("walkToStop")
-
- .addEventListener(
-
-  "click",
-
-  function(){
-
-   openWalking(
-
-    $("from").value,
-
-    boarding.address
-
-   );
-
-  }
-
- );
-
-
- $("walkFromStop")
-
- .addEventListener(
-
-  "click",
-
-  function(){
-
-   openWalking(
-
-    exit.address,
-
-    $("to").value
-    + ", Nha Trang"
-
-   );
-
-  }
-
- );
-
-
- $("labelFrom").textContent =
-
- $("from").value
-
- || "Điểm đi";
-
-
- $("labelBoard").textContent =
-
- boarding.name;
-
-
- $("labelExit").textContent =
-
- exit.name;
-
-
- $("labelTo").textContent =
-
- $("to").value
-
- || "Điểm đến";
-
-}
-
-
-function renderAll(){
-
- renderTabs();
-
- renderJourney();
-
-}
-
-
-function openWalking(
- origin,
- destination
+for(
+var i=0;
+i<ids.length;
+i++
 ){
 
- const url =
+var id=ids[i];
 
- "https://www.google.com/maps/dir/?api=1"
-
- + "&origin="
-
- + encodeURIComponent(origin)
-
- + "&destination="
-
- + encodeURIComponent(destination)
-
- + "&travelmode=walking";
+var r=routes[id];
 
 
- window.open(
-  url,
-  "_blank"
- );
+html +=
 
-}
+"<button "
++"type='button' "
++"class='tab "
++(id==selected?"on":"")
++"' "
++"onclick=\"chonTuyen('"
++id
++"')\">"
 
++"<b>Tuyến "
++id
++"</b>"
 
-function findRoute(){
++"<br>"
 
- try{
++r.minutes
++" phút"
 
-  const from =
-  $("from").value.trim();
++"<br>"
 
-  const to =
-  $("to").value.trim();
++"<small>Đi bộ "
++r.walk
++" m</small>"
 
-
-  if(!from || !to){
-
-   alert(
-
-    "Vui lòng nhập cả điểm đi "
-    + "và điểm đến."
-
-   );
-
-   return;
-
-  }
-
-
-  localStorage.setItem(
-   "bnt41_from",
-   from
-  );
-
-  localStorage.setItem(
-   "bnt41_to",
-   to
-  );
-
-  localStorage.setItem(
-   "bnt41_pref",
-   $("pref").value
-  );
-
-
-  selected = "04";
-
-
-  $("result")
-  .classList
-  .remove("hidden");
-
-
-  renderAll();
-
-
-  $("status").textContent =
-
-  "✓ Đã tạo hành trình mẫu. "
-  + "Kéo xuống để xem kết quả.";
-
-
-  setTimeout(
-
-   function(){
-
-    $("result")
-    .scrollIntoView({
-
-     behavior:"smooth",
-
-     block:"start"
-
-    });
-
-   },
-
-   80
-
-  );
-
- }
- catch(error){
-
-  alert(
-   "Lỗi V4.1: "
-   + error.message
-  );
-
-  console.error(error);
-
- }
++"</button>";
 
 }
 
 
-$("findButton")
-
-.addEventListener(
-
- "click",
-
- findRoute
-
-);
-
-
-const savedFrom =
-localStorage.getItem(
- "bnt41_from"
-);
-
-const savedTo =
-localStorage.getItem(
- "bnt41_to"
-);
-
-const savedPreference =
-localStorage.getItem(
- "bnt41_pref"
-);
-
-
-if(savedFrom){
-
- $("from").value =
- savedFrom;
+get("tabs").innerHTML=
+html;
 
 }
 
 
-if(savedTo){
-
- $("to").value =
- savedTo;
-
-}
-
-
-if(savedPreference){
-
- $("pref").value =
- savedPreference;
-
-}
-
-</script>
-
-</body>
-</html>
+function ch

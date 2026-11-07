@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#087f5b">
 
-<title>Bus Nha Trang V4.3</title>
+<title>Bus Nha Trang V4.4</title>
 
 <style>
 
-*{box-sizing:border-box}
+*{
+ box-sizing:border-box;
+}
 
 html{
  scroll-behavior:smooth;
@@ -25,7 +27,11 @@ body{
 header{
  background:linear-gradient(135deg,#087f5b,#55ad83);
  color:white;
- padding:35px 18px 25px;
+
+ padding:
+ calc(27px + env(safe-area-inset-top))
+ 18px
+ 24px;
 }
 
 h1{
@@ -70,8 +76,10 @@ select{
 .find-link{
  display:block;
  width:100%;
+
  margin-top:13px;
  padding:15px;
+
  border-radius:14px;
 
  background:#087f5b;
@@ -84,34 +92,125 @@ select{
  font-weight:bold;
 }
 
+.small{
+ color:#66736e;
+ font-size:13px;
+ line-height:1.5;
+}
+
+.notice{
+ background:#fff6db;
+ color:#745b08;
+
+ border-radius:14px;
+
+ padding:13px;
+
+ font-size:12px;
+ line-height:1.5;
+}
+
+
+/* ===== CHỌN TUYẾN ===== */
+
+.route-radio{
+ position:absolute;
+ opacity:0;
+ pointer-events:none;
+}
+
 .tabs{
  display:flex;
  gap:8px;
+
  overflow-x:auto;
+
+ padding-bottom:3px;
 }
 
 .tab{
  display:block;
+
  min-width:118px;
+
  padding:13px;
+
  border-radius:14px;
 
  background:#eef5f2;
  color:#17211e;
 
  text-align:center;
- text-decoration:none;
 
  border:1px solid #d4e0db;
+
+ cursor:pointer;
 }
 
-.tab.on{
+.tab small{
+ font-weight:normal;
+}
+
+
+/* Tuyến đang chọn */
+
+#route04:checked
+~ .chooser
+label[for="route04"],
+
+#route02:checked
+~ .chooser
+label[for="route02"],
+
+#route05:checked
+~ .chooser
+label[for="route05"]{
+
  background:#087f5b;
  color:white;
+
 }
+
+
+/* ===== PANEL TUYẾN ===== */
+
+.route-panel{
+ display:none;
+}
+
+
+#route04:checked
+~ .panels
+.p04{
+
+ display:block;
+
+}
+
+
+#route02:checked
+~ .panels
+.p02{
+
+ display:block;
+
+}
+
+
+#route05:checked
+~ .panels
+.p05{
+
+ display:block;
+
+}
+
+
+/* ===== SƠ ĐỒ ===== */
 
 .map{
  height:300px;
+
  border-radius:16px;
 
  background:
@@ -123,31 +222,41 @@ select{
 
  position:relative;
  overflow:hidden;
+
+ margin-bottom:14px;
 }
 
 .road{
  position:absolute;
+
  background:white;
+
  border-radius:20px;
 }
 
 .r1{
  width:520px;
  height:28px;
+
  left:-30px;
  top:145px;
- transform:rotate(-18deg);
+
+ transform:
+ rotate(-18deg);
 }
 
 .r2{
  width:360px;
  height:22px;
+
  left:70px;
  top:95px;
- transform:rotate(72deg);
+
+ transform:
+ rotate(72deg);
 }
 
-.line{
+.busline{
  position:absolute;
 
  left:58%;
@@ -156,12 +265,27 @@ select{
  width:8px;
  height:220px;
 
- background:#087f5b;
-
  border-radius:8px;
 
- transform:rotate(9deg);
+ transform:
+ rotate(9deg);
 }
+
+
+/* Màu từng tuyến */
+
+.green{
+ background:#087f5b;
+}
+
+.blue{
+ background:#1769aa;
+}
+
+.orange{
+ background:#b86612;
+}
+
 
 .dot{
  position:absolute;
@@ -172,57 +296,90 @@ select{
  border-radius:50%;
 
  display:flex;
+
  align-items:center;
  justify-content:center;
 
  color:white;
+
  font-weight:bold;
 }
 
 .a{
  left:54%;
  top:25px;
+
  background:#1769aa;
 }
 
 .s1{
  left:56%;
  top:95px;
+
  background:#087f5b;
 }
 
 .s2{
  left:60%;
  top:185px;
+
  background:#087f5b;
 }
 
 .b{
  left:63%;
  top:248px;
+
  background:#d43a36;
 }
 
+
 .maplabel{
  position:absolute;
+
  left:17%;
 
  background:white;
 
  padding:5px 8px;
+
  border-radius:8px;
 
  font-size:11px;
 
  box-shadow:0 2px 7px #0002;
 
- max-width:145px;
+ max-width:150px;
 }
 
-.la{top:26px}
-.ls1{top:96px}
-.ls2{top:187px}
-.lb{top:249px}
+.la{
+ top:26px;
+}
+
+.ls1{
+ top:96px;
+}
+
+.ls2{
+ top:187px;
+}
+
+.lb{
+ top:249px;
+}
+
+
+/* ===== CHI TIẾT ===== */
+
+.detail-card{
+ background:white;
+
+ border-radius:20px;
+
+ padding:17px;
+
+ margin-bottom:15px;
+}
 
 .badge{
  display:inline-block;
@@ -238,16 +395,18 @@ select{
  font-weight:bold;
 }
 
+
 .metrics{
  display:grid;
 
  grid-template-columns:
- repeat(3,1fr);
+ repeat(4,1fr);
 
  gap:8px;
 
  margin:13px 0;
 }
+
 
 .metric{
  text-align:center;
@@ -256,13 +415,18 @@ select{
 
  border-radius:12px;
 
- padding:10px;
+ padding:10px 6px;
 }
+
 
 .metric strong{
  display:block;
+
  color:#087f5b;
+
+ font-size:16px;
 }
+
 
 .timeline{
  border-left:
@@ -274,15 +438,13 @@ select{
  18px 0 8px 10px;
 }
 
+
 .step{
  margin-bottom:18px;
 }
 
-.small{
- color:#66736e;
- font-size:13px;
- line-height:1.5;
-}
+
+/* ===== LỊCH XE ===== */
 
 .schedule{
  background:#f2faf7;
@@ -292,14 +454,17 @@ select{
  padding:12px;
 }
 
+
 .times{
  display:flex;
+
  gap:7px;
 
  overflow:auto;
 
  margin-top:9px;
 }
+
 
 .time{
  min-width:92px;
@@ -316,38 +481,52 @@ select{
  text-align:center;
 }
 
+
 .time.next{
  background:#087f5b;
  color:white;
 }
 
-.notice{
- background:#fff6db;
- color:#745b08;
 
- border-radius:14px;
+.actions{
+ display:grid;
+
+ grid-template-columns:
+ 1fr 1fr;
+
+ gap:8px;
+}
+
+
+.actions .find-link{
+ margin-top:10px;
+
+ font-size:14px;
 
  padding:13px;
-
- font-size:12px;
-
- line-height:1.5;
 }
 
-.alt{
- scroll-margin-top:12px;
-}
 
 @media(max-width:560px){
 
  .metrics{
+
   grid-template-columns:
   1fr 1fr;
+
+ }
+
+ .actions{
+
+  grid-template-columns:
+  1fr;
+
  }
 
 }
 
 </style>
+
 </head>
 
 
@@ -361,7 +540,7 @@ select{
 </h1>
 
 <p>
-V4.3 · Không dùng JavaScript
+V4.4 · Chọn tuyến để xem hành trình
 </p>
 
 </header>
@@ -369,6 +548,10 @@ V4.3 · Không dùng JavaScript
 
 <main class="wrap">
 
+
+<!-- =====================
+     ĐIỂM ĐI / ĐẾN
+===================== -->
 
 <section class="card">
 
@@ -415,28 +598,49 @@ V4.3 · Không dùng JavaScript
 
 <a
  class="find-link"
- href="#result"
+ href="#routes"
 >
 🔎 TÌM ĐƯỜNG
 </a>
 
-
-<p class="small">
-
-Bản này kiểm tra phần hiển thị hành trình.
-
-Nút TÌM ĐƯỜNG dùng HTML thuần,
-không phụ thuộc JavaScript.
-
-</p>
-
 </section>
 
 
-<section
- id="result"
- class="card alt"
+
+<!-- =====================
+       CHỌN TUYẾN
+===================== -->
+
+<section id="routes">
+
+
+<input
+ class="route-radio"
+ type="radio"
+ name="route"
+ id="route04"
+ checked
 >
+
+
+<input
+ class="route-radio"
+ type="radio"
+ name="route"
+ id="route02"
+>
+
+
+<input
+ class="route-radio"
+ type="radio"
+ name="route"
+ id="route05"
+>
+
+
+
+<div class="card chooser">
 
 <h2>
 🚌 Chọn phương án
@@ -446,9 +650,9 @@ không phụ thuộc JavaScript.
 <div class="tabs">
 
 
-<a
- class="tab on"
- href="#route04"
+<label
+ class="tab"
+ for="route04"
 >
 
 <b>
@@ -465,12 +669,13 @@ Tuyến 04
 Đi bộ 450 m
 </small>
 
-</a>
+</label>
 
 
-<a
+
+<label
  class="tab"
- href="#route02"
+ for="route02"
 >
 
 <b>
@@ -487,12 +692,13 @@ Tuyến 02
 Đi bộ 520 m
 </small>
 
-</a>
+</label>
 
 
-<a
+
+<label
  class="tab"
- href="#route05"
+ for="route05"
 >
 
 <b>
@@ -509,15 +715,26 @@ Tuyến 05
 Đi bộ 600 m
 </small>
 
-</a>
+</label>
 
 
 </div>
 
-</section>
+</div>
 
 
-<section class="card">
+
+<div class="panels">
+
+
+<!-- =====================
+         TUYẾN 04
+===================== -->
+
+<section class="route-panel p04">
+
+
+<div class="card">
 
 <div class="map">
 
@@ -525,7 +742,7 @@ Tuyến 05
 
 <div class="road r2"></div>
 
-<div class="line"></div>
+<div class="busline green"></div>
 
 
 <div class="dot a">
@@ -564,28 +781,26 @@ Bò Nướng Lạc Cảnh
 </div>
 
 
-<p class="small">
+<div class="small">
 
-Sơ đồ minh họa,
+Sơ đồ tuyến 04,
 chưa phải bản đồ GPS.
 
-</p>
+</div>
 
-</section>
+</div>
 
 
-<section
- id="route04"
- class="card alt"
->
+
+<div class="detail-card">
 
 <span class="badge">
-⭐ Phương án mẫu
+⭐ Phương án ưu tiên
 </span>
 
 
 <h2>
-Tuyến 04
+🚌 Tuyến 04
 </h2>
 
 
@@ -599,7 +814,7 @@ Tuyến 04
 </strong>
 
 <small>
-Tổng dự kiến
+Tổng thời gian
 </small>
 
 </div>
@@ -621,11 +836,24 @@ Tổng đi bộ
 <div class="metric">
 
 <strong>
+6 trạm
+</strong>
+
+<small>
+Trên xe
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
 ~7.000đ
 </strong>
 
 <small>
-Giá tham khảo
+Vé tham khảo
 </small>
 
 </div>
@@ -634,23 +862,26 @@ Giá tham khảo
 </div>
 
 
+
 <div class="timeline">
 
 
 <div class="step">
 
 <b>
-🚶 Đi bộ đến trạm Trần Phú
+🚶 Đi bộ ~120 m
 </b>
 
 <div class="small">
 
-Khu vực 96 Trần Phú,
+Từ 84 Trần Phú đến
+trạm khu vực 96 Trần Phú,
 gần Trần Quang Khải.
 
 </div>
 
 </div>
+
 
 
 <div class="step">
@@ -661,9 +892,10 @@ gần Trần Quang Khải.
 
 <div class="small">
 
-Phương án mẫu khoảng 6 trạm.
+Đi khoảng 6 trạm,
+khoảng 12 phút.
 
-Khung giờ tham khảo
+Khung giờ tham khảo:
 05:10–19:10.
 
 </div>
@@ -671,10 +903,11 @@ Khung giờ tham khảo
 </div>
 
 
+
 <div class="step">
 
 <b>
-🚏 Xuống tại trạm Lý Thánh Tôn
+🚏 Xuống trạm Lý Thánh Tôn
 </b>
 
 <div class="small">
@@ -687,22 +920,31 @@ gần Nguyễn Thiện Thuật.
 </div>
 
 
+
 <div class="step">
 
 <b>
-🚶 Đi bộ đến Bò Nướng Lạc Cảnh
+🚶 Đi bộ ~330 m
 </b>
 
+<div class="small">
+
+Từ trạm xuống đến
+Bò Nướng Lạc Cảnh.
+
+</div>
+
 </div>
 
 
 </div>
+
 
 
 <div class="schedule">
 
 <b>
-🕐 Lịch minh họa tại trạm lên
+🕐 Lịch minh họa tuyến 04
 </b>
 
 
@@ -718,7 +960,7 @@ gần Nguyễn Thiện Thuật.
 <br>
 
 <small>
-Chuyến gần nhất
+Gần nhất
 </small>
 
 </div>
@@ -771,18 +1013,11 @@ Chuyến kế
 
 </div>
 
-
-<p class="small">
-
-Các giờ trên chỉ dùng để
-kiểm tra giao diện.
-
-Không phải bảng giờ chính thức
-theo trạm.
-
-</p>
-
 </div>
+
+
+
+<div class="actions">
 
 
 <a
@@ -790,7 +1025,7 @@ theo trạm.
  href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
 >
 
-🚶 Google Maps đến trạm lên
+🚶 Đến trạm lên
 
 </a>
 
@@ -800,112 +1035,681 @@ theo trạm.
  href="https://www.google.com/maps/dir/?api=1&amp;origin=L%C3%BD%20Th%C3%A1nh%20T%C3%B4n%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
 >
 
-🚶 Google Maps từ trạm xuống
+🚶 Trạm xuống → đích
 
 </a>
 
 
+</div>
+
+</div>
+
 </section>
 
 
-<section
- id="route02"
- class="card alt"
->
+
+<!-- =====================
+         TUYẾN 02
+===================== -->
+
+<section class="route-panel p02">
+
+
+<div class="card">
+
+<div class="map">
+
+<div class="road r1"></div>
+
+<div class="road r2"></div>
+
+<div class="busline blue"></div>
+
+
+<div class="dot a">
+A
+</div>
+
+<div class="dot s1">
+🚏
+</div>
+
+<div class="dot s2">
+🚏
+</div>
+
+<div class="dot b">
+B
+</div>
+
+
+<div class="maplabel la">
+84 Trần Phú
+</div>
+
+<div class="maplabel ls1">
+Trạm Trần Phú
+</div>
+
+<div class="maplabel ls2">
+Lý Tự Trọng / Quang Trung
+</div>
+
+<div class="maplabel lb">
+Bò Nướng Lạc Cảnh
+</div>
+
+
+</div>
+
+
+<div class="small">
+
+Sơ đồ tuyến 02,
+chưa phải bản đồ GPS.
+
+</div>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<span class="badge">
+Phương án khác
+</span>
+
 
 <h2>
 🚌 Tuyến 02
 </h2>
 
-<p>
-<b>Trạm lên:</b><br>
-Khu vực 96 Trần Phú
-</p>
 
-<p>
-<b>Trạm xuống:</b><br>
-Lý Tự Trọng,
-gần Quang Trung
-</p>
+<div class="metrics">
 
-<p>
-<b>Đi bộ mẫu:</b>
+
+<div class="metric">
+
+<strong>
+20 phút
+</strong>
+
+<small>
+Tổng thời gian
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
 520 m
-</p>
+</strong>
 
-<p>
-<b>Khung giờ tham khảo:</b>
-05:20–19:10
-</p>
+<small>
+Tổng đi bộ
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
+7 trạm
+</strong>
+
+<small>
+Trên xe
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
+~7.000đ
+</strong>
+
+<small>
+Vé tham khảo
+</small>
+
+</div>
+
+
+</div>
+
+
+
+<div class="timeline">
+
+
+<div class="step">
+
+<b>
+🚶 Đi bộ ~120 m
+</b>
+
+<div class="small">
+
+Từ 84 Trần Phú đến
+trạm khu vực 96 Trần Phú,
+gần Trần Quang Khải.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚌 Lên tuyến 02
+</b>
+
+<div class="small">
+
+Đi khoảng 7 trạm,
+khoảng 13 phút.
+
+Khung giờ tham khảo:
+05:20–19:10.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚏 Xuống tại Lý Tự Trọng
+</b>
+
+<div class="small">
+
+Khu vực gần giao
+Quang Trung.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚶 Đi bộ ~400 m
+</b>
+
+<div class="small">
+
+Từ khu vực
+Lý Tự Trọng / Quang Trung
+đến Bò Nướng Lạc Cảnh.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="schedule">
+
+<b>
+🕐 Lịch minh họa tuyến 02
+</b>
+
+
+<div class="times">
+
+
+<div class="time next">
+
+<b>
+14:32
+</b>
+
+<br>
+
+<small>
+Gần nhất
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+15:22
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+16:12
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+17:02
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="actions">
 
 
 <a
  class="find-link"
- href="#result"
+ href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
 >
 
-⬆️ Quay lại chọn tuyến
+🚶 Đến trạm lên
 
 </a>
+
+
+<a
+ class="find-link"
+ href="https://www.google.com/maps/dir/?api=1&amp;origin=L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%20%26%20Quang%20Trung%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
+>
+
+🚶 Trạm xuống → đích
+
+</a>
+
+
+</div>
+
+</div>
 
 </section>
 
 
-<section
- id="route05"
- class="card alt"
->
+
+<!-- =====================
+         TUYẾN 05
+===================== -->
+
+<section class="route-panel p05">
+
+
+<div class="card">
+
+<div class="map">
+
+<div class="road r1"></div>
+
+<div class="road r2"></div>
+
+<div class="busline orange"></div>
+
+
+<div class="dot a">
+A
+</div>
+
+<div class="dot s1">
+🚏
+</div>
+
+<div class="dot s2">
+🚏
+</div>
+
+<div class="dot b">
+B
+</div>
+
+
+<div class="maplabel la">
+84 Trần Phú
+</div>
+
+<div class="maplabel ls1">
+Trạm Trần Phú
+</div>
+
+<div class="maplabel ls2">
+Trạm Nguyễn Chánh
+</div>
+
+<div class="maplabel lb">
+Bò Nướng Lạc Cảnh
+</div>
+
+
+</div>
+
+
+<div class="small">
+
+Sơ đồ tuyến 05,
+chưa phải bản đồ GPS.
+
+</div>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<span class="badge">
+Phương án khác
+</span>
+
 
 <h2>
 🚌 Tuyến 05
 </h2>
 
-<p>
-<b>Trạm lên:</b><br>
-Khu vực 96 Trần Phú
-</p>
 
-<p>
-<b>Trạm xuống:</b><br>
-Nguyễn Chánh,
-gần Ngô Gia Tự
-</p>
+<div class="metrics">
 
-<p>
-<b>Đi bộ mẫu:</b>
+
+<div class="metric">
+
+<strong>
+22 phút
+</strong>
+
+<small>
+Tổng thời gian
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
 600 m
-</p>
+</strong>
 
-<p>
-<b>Khung giờ tham khảo:</b>
-05:20–18:35
-</p>
+<small>
+Tổng đi bộ
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
+7 trạm
+</strong>
+
+<small>
+Trên xe
+</small>
+
+</div>
+
+
+<div class="metric">
+
+<strong>
+~7.000đ
+</strong>
+
+<small>
+Vé tham khảo
+</small>
+
+</div>
+
+
+</div>
+
+
+
+<div class="timeline">
+
+
+<div class="step">
+
+<b>
+🚶 Đi bộ ~120 m
+</b>
+
+<div class="small">
+
+Từ 84 Trần Phú
+đến trạm khu vực
+96 Trần Phú.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚌 Lên tuyến 05
+</b>
+
+<div class="small">
+
+Đi khoảng 7 trạm,
+khoảng 14 phút.
+
+Khung giờ tham khảo:
+05:20–18:35.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚏 Xuống tại Nguyễn Chánh
+</b>
+
+<div class="small">
+
+Khu vực gần
+Ngô Gia Tự.
+
+</div>
+
+</div>
+
+
+
+<div class="step">
+
+<b>
+🚶 Đi bộ ~480 m
+</b>
+
+<div class="small">
+
+Từ Nguyễn Chánh đến
+Bò Nướng Lạc Cảnh.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="schedule">
+
+<b>
+🕐 Lịch minh họa tuyến 05
+</b>
+
+
+<div class="times">
+
+
+<div class="time next">
+
+<b>
+14:27
+</b>
+
+<br>
+
+<small>
+Gần nhất
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+15:02
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+15:37
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+<div class="time">
+
+<b>
+16:12
+</b>
+
+<br>
+
+<small>
+Chuyến kế
+</small>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="actions">
 
 
 <a
  class="find-link"
- href="#result"
+ href="https://www.google.com/maps/dir/?api=1&amp;origin=Quinter%20Central%2C%2084%20Tr%E1%BA%A7n%20Ph%C3%BA&amp;destination=96%20Tr%E1%BA%A7n%20Ph%C3%BA%2C%20Nha%20Trang&amp;travelmode=walking"
 >
 
-⬆️ Quay lại chọn tuyến
+🚶 Đến trạm lên
 
 </a>
+
+
+<a
+ class="find-link"
+ href="https://www.google.com/maps/dir/?api=1&amp;origin=Nguy%E1%BB%85n%20Ch%C3%A1nh%2C%20Nha%20Trang&amp;destination=B%C3%B2%20N%C6%B0%E1%BB%9Bng%20L%E1%BA%A1c%20C%E1%BA%A3nh%2C%20Nha%20Trang&amp;travelmode=walking"
+>
+
+🚶 Trạm xuống → đích
+
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+</div>
 
 </section>
 
 
 <section class="notice">
 
-<b>V4.3:</b>
+<b>V4.4:</b>
 
-Bản này hoàn toàn không có JavaScript.
+Bấm Tuyến 02, 04 hoặc 05 sẽ chỉ hiện
+chi tiết của tuyến đang chọn.
 
-Mục tiêu là xác nhận Safari và GitHub Pages
-hiển thị phần hành trình ổn định.
+Các số phút, quãng đường, số trạm
+và giờ xe hiện vẫn là dữ liệu mẫu
+để kiểm tra giao diện.
 
-Sau khi bản này chạy chắc chắn,
-chúng ta mới thêm lại tìm địa chỉ động,
-Google Places và Google Maps từng phần.
+Chưa phải dữ liệu GPS hoặc
+thời gian thực.
 
 </section>
 
